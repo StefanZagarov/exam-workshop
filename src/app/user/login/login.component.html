@@ -1,0 +1,19 @@
+<div>
+    <form [formGroup]="form" (ngSubmit)="login()">
+        <fieldset>
+            <p>
+                <label for="username"></label>
+                <input type="username" name="username" id="username" placeholder="username" formControlName="username">
+            </p>
+
+            <p>
+                <label for="password"></label>
+                <input type="password" name="password" id="password" placeholder="password" formControlName="password">
+            </p>
+
+            <button>Submit</button>
+
+            <p> Not signed up? <a routerLink="/register">Register</a></p>
+        </fieldset>
+    </form>
+</div>

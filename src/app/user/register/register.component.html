@@ -1,23 +1,33 @@
 <div>
     <form #form="ngForm" (ngSubmit)="register(form)">
-        <p>
-            <label for="username"></label>
-            <input type="username" name="username" id="username" placeholder="username" ngModel #inputUsername="ngModel"
-                required minlength="3">
-        </p>
+        <fieldset>
+            <p>
+                <label for="username"></label>
+                <input type="username" name="username" id="username" placeholder="username" ngModel
+                    #inputUsername="ngModel" required minlength="3">
+            </p>
 
-        <p>
-            <label for="email"></label>
-            <input type="email" name="email" id="email" placeholder="email" ngModel #inputEmail="ngModel" required
-                email>
-        </p>
+            <p>
+                <label for="email"></label>
+                <input type="email" name="email" id="email" placeholder="email" ngModel #inputEmail="ngModel" required
+                    email>
+            </p>
 
-        <p>
-            <label for="password"></label>
-            <input type="password" name="password" id="password" placeholder="password" ngModel #inputPassword="ngModel"
-                required minlength="6">
-        </p>
+            <p>
+                <label for="password"></label>
+                <input type="password" name="password" id="password" placeholder="password" ngModel
+                    #inputPassword="ngModel" required minlength="6">
+            </p>
 
-        <button>Submit</button>
+            <p>
+                <label for="rePassword"></label>
+                <input type="rePassword" name="rePassword" id="rePassword" placeholder="rePassword" ngModel
+                    #inputrePassword="ngModel" required minlength="6">
+            </p>
+
+            <button>Submit</button>
+
+            <p> Have an account? <a routerLink="/login">Log In</a></p>
+        </fieldset>
     </form>
 </div>

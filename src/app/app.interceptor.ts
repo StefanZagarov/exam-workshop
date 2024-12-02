@@ -3,6 +3,7 @@ import { environment } from '../environment/environment';
 import { catchError } from 'rxjs';
 import { Router } from '@angular/router';
 import { inject } from '@angular/core';
+import { ErrorMsgService } from './core/error-msg/error-msg.service';
 
 
 // Get our API URL
@@ -23,6 +24,8 @@ export const appInterceptor: HttpInterceptorFn = (req, next) =>
     });
   }
 
+  // Injectable
+  const errorService = inject(ErrorMsgService);
   const router = inject(Router);
 
   return next(req).pipe(
@@ -36,10 +39,8 @@ export const appInterceptor: HttpInterceptorFn = (req, next) =>
       }
       else
       {
-        // TODO: Implement error service
         // Set the error
-        // errorService.setError(error);
-
+        errorService.setError(error);
         // Navigate to error where we will display the error prompt
         router.navigate([`/error`]);
       }
