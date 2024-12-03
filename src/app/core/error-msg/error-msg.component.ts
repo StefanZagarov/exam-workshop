@@ -13,15 +13,15 @@ export class ErrorMsgComponent implements OnInit
   constructor(private errorMsgService: ErrorMsgService) { }
 
   // Save the error message as a signal to manage its state
-  errorMsg = ``;
+  errorMsg = signal(``);
 
+  // TODO: Learn how this works
   ngOnInit(): void
   {
     // Subscribe to the error
     this.errorMsgService.apiError$.subscribe((error: any) =>
     {
-      console.log(error.error.text);
-      this.errorMsg = error?.error.text;
+      this.errorMsg.set(error?.error);
     });
   }
 }

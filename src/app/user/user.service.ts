@@ -50,7 +50,7 @@ export class UserService
         username,
         password
       })
-      .pipe(tap(user => this.user$$.next(user))).subscribe({ error: error => console.log(error) });
+      .pipe(tap(user => this.user$$.next(user)));
   }
 
   logout()

@@ -14,6 +14,7 @@ export class ErrorMsgService
 
   constructor() { }
 
+  // TODO: Learn how this works
   setError(error: any): void
   {
     // Push the error
