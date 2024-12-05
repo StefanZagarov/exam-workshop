@@ -3,6 +3,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { HomeComponent } from './home/home/home.component';
 import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
 import { LoginComponent } from './user/login/login.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 export const routes: Routes = [
     // Home
@@ -13,6 +14,7 @@ export const routes: Routes = [
     // User related paths
     { path: `register`, component: RegisterComponent },
     { path: `login`, component: LoginComponent },
+    { path: `profile`, component: ProfileComponent },
 
     { path: `error`, component: ErrorMsgComponent }
 ];

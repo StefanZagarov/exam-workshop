@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class LoginComponent
 {
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   form = new FormGroup({
     username: new FormControl(``, [Validators.required]),
@@ -23,13 +23,16 @@ export class LoginComponent
   {
     if (this.form.invalid)
     {
-      console.log(`Invalid form`);
+      console.log(`Invalid login form!`);
       return;
     }
 
     const { username, password } = this.form.value;
 
     // TODO: Make redirection to the Catalog
-    this.userService.login(username!, password!).subscribe();
+    this.userService.login(username!, password!).subscribe(() =>
+    {
+      this.router.navigate([`/`]);
+    });
   }
 }

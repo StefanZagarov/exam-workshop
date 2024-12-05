@@ -1,5 +1,3 @@
-<h1>Welcome to Distortion Pit!</h1>
-
 <div class="navbar">
     <ul>
         @if(!isLoggedIn)
@@ -13,9 +11,9 @@
         }
         @else
         {
-        <li>
-            <a (click)="logout()">Logout</a>
-        </li>
+        <a routerLink="/profile" style="padding-right: 10px;">{{username}}</a>
+
+        <a (click)="logout()">Logout</a>
         }
     </ul>
 </div>

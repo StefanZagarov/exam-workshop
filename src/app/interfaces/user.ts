@@ -5,8 +5,7 @@ export interface User
     password: string;
 };
 
-// TODO: Decide if this is useful
-export interface AuthUser
+export interface UserDetails
 {
     username: string;
     email: string;
