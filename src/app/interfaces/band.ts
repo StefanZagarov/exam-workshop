@@ -5,4 +5,5 @@ export interface Band
     genres: string;
     members: string;
     description: string;
+    _id: string;
 }

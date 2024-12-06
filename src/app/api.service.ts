@@ -10,7 +10,10 @@ export class ApiService
   constructor(private http: HttpClient) { }
 
   // TODO: Get all bands
-
+  getAllBands()
+  {
+    return this.http.get<Band[]>(`/api/band/ranking`);
+  }
   // TODO: Get all songs
 
   // TODO: Search bar functionality

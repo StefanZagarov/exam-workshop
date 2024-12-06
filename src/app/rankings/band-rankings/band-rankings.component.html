@@ -1,1 +1,31 @@
-<p>band-rankings works!</p>
+<main>
+    <div>
+        @for(band of bands; track $index)
+        {
+        <div>
+            <h2>{{band.name}}</h2>
+
+            <div>
+                <p>Genres</p>
+                <p>{{band.genres}}</p>
+            </div>
+
+            <div>
+                <p>Origin</p>
+                <p>{{band.origin}}</p>
+            </div>
+
+            <div>
+                <p>Members</p>
+                <p>{{band.members}}</p>
+            </div>
+
+            <div>
+                <p>Description</p>
+                <p>{{band.description}}</p>
+            </div>
+
+        </div>
+        }
+    </div>
+</main>

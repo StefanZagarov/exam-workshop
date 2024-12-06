@@ -6,6 +6,7 @@ import { LoginComponent } from './user/login/login.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { CreateBandComponent } from './bands/create-band/create-band.component';
 import { CreateSongComponent } from './songs/create-song/create-song.component';
+import { BandsRankingComponent } from './rankings/band-rankings/bands-ranking.component';
 
 export const routes: Routes = [
     // Home
@@ -20,6 +21,7 @@ export const routes: Routes = [
     // App related paths
     { path: `create-band`, component: CreateBandComponent },
     { path: `create-song`, component: CreateSongComponent },
+    { path: `bands-ranking`, component: BandsRankingComponent },
 
     // Errors
     { path: `error`, component: ErrorMsgComponent }
