@@ -1,4 +1,5 @@
 <main>
+    <h1>Warriors of Metal</h1>
     <div>
         @for(band of bands; track $index)
         {
@@ -11,18 +12,8 @@
             </div>
 
             <div>
-                <p>Origin</p>
-                <p>{{band.origin}}</p>
-            </div>
-
-            <div>
-                <p>Members</p>
-                <p>{{band.members}}</p>
-            </div>
-
-            <div>
-                <p>Description</p>
-                <p>{{band.description}}</p>
+                <p>Likes</p>
+                <p>{{band.likes.length}}</p>
             </div>
 
         </div>

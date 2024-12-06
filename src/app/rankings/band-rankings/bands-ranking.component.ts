@@ -6,8 +6,8 @@ import { Band } from '../../interfaces/band';
   selector: 'app-bands-ranking',
   standalone: true,
   imports: [],
-  templateUrl: './band-rankings.component.html',
-  styleUrl: './band-rankings.component.css'
+  templateUrl: './bands-ranking.component.html',
+  styleUrl: './bands-ranking.component.css'
 })
 export class BandsRankingComponent implements OnInit
 {
@@ -23,7 +23,6 @@ export class BandsRankingComponent implements OnInit
     this.apiService.getAllBands().subscribe(bands =>
     {
       this.bands = bands;
-      console.log(this.bands);
       this.isLoading = false;
     });
   }

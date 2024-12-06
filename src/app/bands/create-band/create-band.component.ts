@@ -25,6 +25,6 @@ export class CreateBandComponent
     const { name, origin, genres, members, description } = form.value;
 
     // TODO: Change navigate to bands list
-    this.apiService.createBand(name, origin, genres, members, description).subscribe(() => this.router.navigate([`/`]));
+    this.apiService.createBand(name, origin, genres, members, description).subscribe(() => this.router.navigate([`/bands-ranking`]));
   }
 }

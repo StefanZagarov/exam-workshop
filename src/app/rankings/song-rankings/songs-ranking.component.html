@@ -1,0 +1,21 @@
+<main>
+    <h1>Songs of Legends</h1>
+    <div>
+        @for(song of songs; track $index)
+        {
+        <div [routerLink]="song._id">
+            <h2>{{song.name}}</h2>
+
+            <div>
+                <p>Band</p>
+                <p>{{song.band}}</p>
+            </div>
+
+            <div>
+                <p>Likes</p>
+                <p>{{song.likes.length}}</p>
+            </div>
+        </div>
+        }
+    </div>
+</main>

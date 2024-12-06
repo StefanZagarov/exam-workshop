@@ -1,12 +1,11 @@
 import { User } from "./user";
 
-export interface Band
+export interface Song
 {
     name: string;
-    origin: string;
     genres: string;
-    members: string;
-    description: string;
+    band: string;
+    length: string;
     createdBy: User;
     likes: string[];
     _id: string;

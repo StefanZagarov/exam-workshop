@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Band } from './interfaces/band';
+import { Song } from './interfaces/song';
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +10,17 @@ export class ApiService
 {
   constructor(private http: HttpClient) { }
 
-  // TODO: Get all bands
   getAllBands()
   {
     return this.http.get<Band[]>(`/api/band/ranking`);
   }
-  // TODO: Get all songs
+
+  getAllSongs()
+  {
+    return this.http.get<Song[]>(`/api/song/ranking`);
+  }
 
   // TODO: Search bar functionality
-
-  // TODO: Ranking list
 
   createBand(name: string, origin: string, genres: string, members: string, description: string)
   {
@@ -30,4 +32,14 @@ export class ApiService
       description
     });
   }
+
+  createSong(name: string, genres: string, band: string, length: string)
+  {
+    return this.http.post<Song>(`/api/song/create`, {
+      name,
+      genres,
+      band,
+      length
+    });
+  };
 }
