@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../user.service';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent
 {
   // Template-driven form
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   // Create submit handler
 
@@ -29,6 +29,8 @@ export class RegisterComponent
 
     const { username, email, password, rePassword } = form.value;
 
-    this.userService.register(username, email, password, rePassword).subscribe();
+    this.userService.register(username, email, password, rePassword).subscribe(() =>
+      this.router.navigate([`/`])
+    );
   }
 }

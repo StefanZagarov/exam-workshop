@@ -1,17 +1,23 @@
 <div class="navbar">
     <ul>
+        <a routerLink="/" style="padding-right: 20px">Home</a>
+
+
+        <a routerLink="" style="padding-right: 20px">Songs Rankings</a>
+        <a routerLink="" style="padding-right: 20px">Bands Rankings</a>
+
         @if(!isLoggedIn)
         {
-        <li>
-            <a routerLink="/register">Register</a>
-        </li>
-        <li>
-            <a routerLink="/login">Login</a>
-        </li>
+        <a routerLink="/login" style="padding-right: 20px">Login</a>
+
+        <a routerLink="/register" style="padding-right: 20px">Register</a>
         }
         @else
         {
-        <a routerLink="/profile" style="padding-right: 10px;">{{username}}</a>
+        <a routerLink="/create-song" style="padding-right: 20px">Add a song</a>
+        <a routerLink="/create-band" style="padding-right: 20px">Add a band</a>
+
+        <a routerLink="/profile" style="padding-right: 20px">{{username}}</a>
 
         <a (click)="logout()">Logout</a>
         }
