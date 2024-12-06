@@ -1,1 +1,34 @@
-<p>band-details works!</p>
+<div>
+    <h2>{{band.name}}</h2>
+
+    <div>
+        <p>Genres</p>
+        <p>{{band.genres}}</p>
+    </div>
+
+    <div>
+        <p>Origin</p>
+        <p>{{band.origin}}</p>
+    </div>
+
+    <div>
+        <p>Members</p>
+        <p>{{band.members}}</p>
+    </div>
+
+    <div>
+        <p>Description</p>
+        <p>{{band.description}}</p>
+    </div>
+
+    <div>
+        <p>Added by</p>
+        <p>{{band.createdBy?.username}}</p>
+    </div>
+
+    <div>
+        <p>Likes</p>
+        <p>{{band.likes?.length}}</p>
+    </div>
+
+</div>

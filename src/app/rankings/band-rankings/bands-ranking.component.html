@@ -3,7 +3,7 @@
     <div>
         @for(band of bands; track $index)
         {
-        <div>
+        <div [routerLink]="band._id">
             <h2>{{band.name}}</h2>
 
             <div>

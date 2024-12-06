@@ -25,6 +25,11 @@ export class ApiService
     return this.http.get<Song>(`/api/song/${id}`);
   }
 
+  getBandDetails(id: string)
+  {
+    return this.http.get<Band>(`/api/band/${id}`);
+  }
+
   // TODO: Search bar functionality
 
   createBand(name: string, origin: string, genres: string, members: string, description: string)
