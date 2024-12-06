@@ -24,10 +24,16 @@ export const routes: Routes = [
     { path: `create-band`, component: CreateBandComponent },
     { path: `create-song`, component: CreateSongComponent },
     { path: `bands-ranking`, component: BandsRankingComponent },
-    { path: `songs-ranking`, component: SongsRankingComponent },
+    {
+        path: `songs-ranking`,
+        children: [
+            { path: ``, component: SongsRankingComponent },
+            { path: `:songId`, component: SongDetailsComponent }
+        ]
+    },
 
     // Details
-    { path: `:songId`, component: SongDetailsComponent },
+
 
     // Errors
     { path: `error`, component: ErrorMsgComponent }

@@ -20,6 +20,11 @@ export class ApiService
     return this.http.get<Song[]>(`/api/song/ranking`);
   }
 
+  getSongDetails(id: string)
+  {
+    return this.http.get<Song>(`/api/song/${id}`);
+  }
+
   // TODO: Search bar functionality
 
   createBand(name: string, origin: string, genres: string, members: string, description: string)
