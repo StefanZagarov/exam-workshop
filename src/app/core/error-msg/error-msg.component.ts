@@ -15,9 +15,9 @@ export class ErrorMsgComponent implements OnInit
   // Save the error message as a signal to manage its state
   errorMsg = signal(``);
 
-  // TODO: Learn how this works
   ngOnInit(): void
   {
+    // TODO: Learn how this works
     // Subscribe to the error
     this.errorMsgService.apiError$.subscribe((error: any) =>
     {

@@ -23,8 +23,8 @@ export class CreateSongComponent
     }
 
     const { name, genres, band, length } = form.value;
-
-    // TODO: Change navigate to bands list
+    console.log(`asd`);
+    // TODO: Get the user id from here (apiService.user._id)
     this.apiService.createSong(name, genres, band, length).subscribe(() => this.router.navigate([`/songs-ranking`]));
   }
 }

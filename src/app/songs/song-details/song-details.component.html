@@ -25,63 +25,61 @@
 
     <div>
         <p>Likes</p>
-        <p>{{song.likes?.length}}</p>
+        <p>{{song.likes | likes}}</p>
     </div>
-</div>
 
-@if (isOwner)
-{
-<div>
-    <button (click)="toggleEditMode()">Edit</button>
-    <button>Delete</button>
-</div>
-}
-@else if (!hasLiked)
-{
-<div>
-    <button (click)="likeSong()">Like</button>
-</div>
-}
-@else
-{
-<div>
-    <button (click)="unlikeSong()">Unlike</button>
-</div>
-}
 
-<div style="margin-top: 150px;">
-    <fieldset>
-        <div>Comments</div>
-        @if(band.comments)
-        {
-        @for (comment of band.comments; track $index)
-        {
-        <div>
-            <p>{{comment.content}}</p>
-            @if(comment.creator === userId)
+    @if (isOwner)
+    {
+    <div>
+        <button (click)="toggleEditMode()">Edit</button>
+        <button>Delete</button>
+    </div>
+    }
+    @else if (!hasLiked)
+    {
+    <div>
+        <button (click)="likeSong()">Like</button>
+    </div>
+    }
+    @else
+    {
+    <div>
+        <button (click)="unlikeSong()">Unlike</button>
+    </div>
+    }
+    <div style="margin-top: 150px;">
+        <fieldset>
+            <div>Comments</div>
+            @if(song.comments)
             {
-            <button (click)="deleteComment(comment._id)">Delete</button>
-            }
-        </div>
-
-
-        }
-        }
-
-        <form #form="ngForm" (ngSubmit)="postComment(form)">
-            <div style="margin-top: 40px;">
-                <textarea name="bandText" type="comment" name="comment" placeholder="Add a comment" ngModel
-                    #inputComment="ngModel" minlength="1" required></textarea>
-            </div>
-
+            @for (comment of song.comments; track $index)
+            {
             <div>
-                <button>Post Comment</button>
+                <p>{{comment.content}}</p>
+                @if(comment.creator === userId)
+                {
+                <button (click)="deleteComment(comment._id)">Delete</button>
+                }
             </div>
-        </form>
+            }
+            }
 
-    </fieldset>
+            <form #form="ngForm" (ngSubmit)="postComment(form)">
+                <div style="margin-top: 40px;">
+                    <textarea name="bandText" type="comment" name="comment" placeholder="Add a comment" ngModel
+                        #inputComment="ngModel" minlength="1" required></textarea>
+                </div>
+
+                <div>
+                    <button>Post Comment</button>
+                </div>
+            </form>
+
+        </fieldset>
+    </div>
+
 </div>
-
 }
 @else
 {

@@ -38,22 +38,22 @@ export class ApiService
 
   likeSong(userId: string, songId: string)
   {
-    return this.http.post<Song>(`/api/song/${songId}/like`, { userId });
+    return this.http.post(`/api/song/${songId}/like`, { userId });
   }
 
   unlikeSong(userId: string, songId: string)
   {
-    return this.http.post<Song>(`/api/song/${songId}/unlike`, { userId });
+    return this.http.post(`/api/song/${songId}/unlike`, { userId });
   }
 
   postSongComment(songId: string, comment: Object)
   {
-    return this.http.post<Song>(`/api/song/${songId}/comment`, { comment });
+    return this.http.post(`/api/song/${songId}/comment`, { comment });
   }
 
   deleteSongComment(songId: string, commentId: string)
   {
-    return this.http.delete<Song>(`/api/song/${songId}/${commentId}`);
+    return this.http.delete(`/api/song/${songId}/${commentId}`);
   }
 
   createBand(name: string, origin: string, genres: string, members: string, description: string)
@@ -84,22 +84,22 @@ export class ApiService
 
   likeBand(userId: string, bandId: string)
   {
-    return this.http.post<Band>(`/api/band/${bandId}/like`, { userId });
+    return this.http.post(`/api/band/${bandId}/like`, { userId });
   }
 
   unlikeBand(userId: string, bandId: string)
   {
-    return this.http.post<Band>(`/api/band/${bandId}/unlike`, { userId });
+    return this.http.post(`/api/band/${bandId}/unlike`, { userId });
   }
 
   postBandComment(bandId: string, comment: Object)
   {
-    return this.http.post<Band>(`/api/band/${bandId}/comment`, { comment });
+    return this.http.post(`/api/band/${bandId}/comment`, { comment });
   }
 
   deleteBandComment(bandId: string, commentId: string)
   {
-    return this.http.delete<Band>(`/api/band/${bandId}/${commentId}`);
+    return this.http.delete(`/api/band/${bandId}/${commentId}`);
   }
 
   // TODO: Search bar functionality

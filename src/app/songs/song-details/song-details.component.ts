@@ -4,11 +4,12 @@ import { ApiService } from '../../api.service';
 import { UserService } from '../../user/user.service';
 import { Song } from '../../interfaces/song';
 import { FormsModule, NgForm } from '@angular/forms';
+import { LikesPipe } from '../../shared/pipes/likes.pipe';
 
 @Component({
   selector: 'app-song-details',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, LikesPipe],
   templateUrl: './song-details.component.html',
   styleUrl: './song-details.component.css'
 })
@@ -38,6 +39,7 @@ export class SongDetailsComponent implements OnInit
 
       this.hasLiked = this.song.likes.some(userId => userId === this.userId);
     });
+
   }
 
   toggleEditMode()

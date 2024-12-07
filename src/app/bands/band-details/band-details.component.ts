@@ -5,7 +5,6 @@ import { ApiService } from '../../api.service';
 import { UserService } from '../../user/user.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { LikesPipe } from '../../shared/pipes/likes.pipe';
-import { Comment } from '../../interfaces/comment';
 
 @Component({
   selector: 'app-band-details',

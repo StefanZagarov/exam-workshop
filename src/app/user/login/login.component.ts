@@ -29,7 +29,6 @@ export class LoginComponent
 
     const { username, password } = this.form.value;
 
-    // TODO: Make redirection to the Catalog
     this.userService.login(username!, password!).subscribe(() =>
     {
       this.router.navigate([`/`]);
