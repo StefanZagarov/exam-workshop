@@ -1,3 +1,5 @@
+@if (!editMode)
+{
 <div>
     <h2>{{band.name}}</h2>
 
@@ -31,4 +33,57 @@
         <p>{{band.likes?.length}}</p>
     </div>
 
+    @if (isOwner)
+    {
+    <div>
+        <button (click)="toggleEditMode()">Edit</button>
+        <button>Delete</button>
+    </div>
+    }
+
+    <div>
+        <fieldset>Comments</fieldset>
+    </div>
 </div>
+}
+@else
+{
+<div>
+    <form #form="ngForm" (ngSubmit)="updateBand(form)">
+        <fieldset>
+            <p>
+                <label for="name"></label>
+                <input type="name" name="name" id="name" placeholder="name" ngModel #inputName="ngModel"
+                    [(ngModel)]="band.name" required>
+            </p>
+
+            <p>
+                <label for="origin"></label>
+                <input type="origin" name="origin" id="origin" placeholder="origin" ngModel #inputOrigin="ngModel"
+                    [(ngModel)]="band.origin" required minlength="2">
+            </p>
+
+            <p>
+                <label for="genres"></label>
+                <input type="genres" name="genres" id="genres" placeholder="genres" ngModel #inputGenres="ngModel"
+                    [(ngModel)]="band.genres" required minlength="2">
+            </p>
+
+            <p>
+                <label for="members"></label>
+                <input type="members" name="members" id="members" placeholder="members" ngModel #inputMembers="ngModel"
+                    [(ngModel)]="band.members" required minlength="4">
+            </p>
+
+            <p>
+                <label for="description"></label>
+                <input type="description" name="description" id="description" placeholder="description" ngModel
+                    #inputDescription="ngModel" [(ngModel)]="band.description" required minlength="4">
+            </p>
+
+            <button>Update band</button>
+            <button type="button" (click)="toggleEditMode()">Cancel</button>
+        </fieldset>
+    </form>
+</div>
+}

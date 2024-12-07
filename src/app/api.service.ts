@@ -10,10 +10,15 @@ export class ApiService
 {
   constructor(private http: HttpClient) { }
 
-  getAllBands()
+  createSong(name: string, genres: string, band: string, length: string)
   {
-    return this.http.get<Band[]>(`/api/band/ranking`);
-  }
+    return this.http.post<Song>(`/api/song/create`, {
+      name,
+      genres,
+      band,
+      length
+    });
+  };
 
   getAllSongs()
   {
@@ -25,12 +30,10 @@ export class ApiService
     return this.http.get<Song>(`/api/song/${id}`);
   }
 
-  getBandDetails(id: string)
+  updateSong(id: string, name: string, genres: string, band: string, length: string)
   {
-    return this.http.get<Band>(`/api/band/${id}`);
+    return this.http.post<Song>(`/api/song/${id}`, { name, genres, band, length });
   }
-
-  // TODO: Search bar functionality
 
   createBand(name: string, origin: string, genres: string, members: string, description: string)
   {
@@ -43,13 +46,20 @@ export class ApiService
     });
   }
 
-  createSong(name: string, genres: string, band: string, length: string)
+  getAllBands()
   {
-    return this.http.post<Song>(`/api/song/create`, {
-      name,
-      genres,
-      band,
-      length
-    });
+    return this.http.get<Band[]>(`/api/band/ranking`);
+  }
+
+  getBandDetails(id: string)
+  {
+    return this.http.get<Band>(`/api/band/${id}`);
+  }
+
+  updateBand(id: string, name: string, origin: string, genres: string, members: string, description: string)
+  {
+    return this.http.post<Band>(`/api/band/${id}`, { name, origin, genres, members, description });
   };
+
+  // TODO: Search bar functionality
 }

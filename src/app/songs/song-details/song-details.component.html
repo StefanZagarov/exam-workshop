@@ -1,30 +1,88 @@
-<main>
+@if (!editMode)
+{
+<div>
+    <h2>{{song.name}}</h2>
+
     <div>
-        <h2>{{song.name}}</h2>
-
-        <div>
-            <p>Genres</p>
-            <p>{{song.genres}}</p>
-        </div>
-
-        <div>
-            <p>Band</p>
-            <p>{{song.band}}</p>
-        </div>
-
-        <div>
-            <p>Length</p>
-            <p>{{song.length}}</p>
-        </div>
-
-        <div>
-            <p>Created by</p>
-            <p>{{song.createdBy.username}}</p>
-        </div>
-
-        <div>
-            <p>Likes</p>
-            <p>{{song.likes.length}}</p>
-        </div>
+        <p>Genres</p>
+        <p>{{song.genres}}</p>
     </div>
-</main>
+
+    <div>
+        <p>Band</p>
+        <p>{{song.band}}</p>
+    </div>
+
+    <div>
+        <p>Length</p>
+        <p>{{song.length}}</p>
+    </div>
+
+    <div>
+        <p>Created by</p>
+        <p>{{song.createdBy?.username}}</p>
+    </div>
+
+    <div>
+        <p>Likes</p>
+        <p>{{song.likes?.length}}</p>
+    </div>
+</div>
+
+@if (isOwner)
+{
+<div>
+    <button (click)="toggleEditMode()">Edit</button>
+    <button>Delete</button>
+</div>
+}
+
+<div>
+    <fieldset>Comments</fieldset>
+</div>
+}
+@else
+{
+<form #form="ngForm" (ngSubmit)="updateSong(form)">
+    <fieldset>
+        <p>
+            <label for="name"></label>
+            <input type="name" name="name" id="name" placeholder="name" ngModel #inputName="ngModel"
+                [(ngModel)]="song.name" required>
+        </p>
+
+        @if(inputName?.touched){
+        <div>
+            @if(inputName?.errors?.['required']){
+            <p>name is required!</p>
+            }
+            <!--  -->
+            @if(inputName?.errors?.['minlength']){
+            <p>name must be at least 5 characters!</p>
+            }
+        </div>
+
+        }
+        <p>
+            <label for="genres"></label>
+            <input type="genres" name="genres" id="genres" placeholder="genres" ngModel #inputGenres="ngModel"
+                [(ngModel)]="song.genres" required minlength="2">
+        </p>
+
+        <p>
+            <label for="band"></label>
+            <input type="band" name="band" id="band" placeholder="band" ngModel #inputDescription="ngModel"
+                [(ngModel)]="song.band" required>
+        </p>
+
+        <p>
+            <label for="length"></label>
+            <input type="length" name="length" id="length" placeholder="length" ngModel #inputDescription="ngModel"
+                [(ngModel)]="song.length" required>
+        </p>
+
+        <button>Edit song</button>
+        <button type="button" (click)="toggleEditMode()">Cancel</button>
+    </fieldset>
+</form>
+}
