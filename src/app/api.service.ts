@@ -46,7 +46,7 @@ export class ApiService
     });
   }
 
-  getAllBands()
+  getAllBandsByLikes()
   {
     return this.http.get<Band[]>(`/api/band/ranking`);
   }
@@ -60,6 +60,16 @@ export class ApiService
   {
     return this.http.post<Band>(`/api/band/${id}`, { name, origin, genres, members, description });
   };
+
+  likeBand(userId: string, bandId: string)
+  {
+    return this.http.post<Band>(`/api/band/${bandId}/like`, { userId });
+  }
+
+  unlikeBand(userId: string, bandId: string)
+  {
+    return this.http.post<Band>(`/api/band/${bandId}/unlike`, { userId });
+  }
 
   // TODO: Search bar functionality
 }

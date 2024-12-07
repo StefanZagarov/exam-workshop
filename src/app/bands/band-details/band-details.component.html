@@ -30,7 +30,7 @@
 
     <div>
         <p>Likes</p>
-        <p>{{band.likes?.length}}</p>
+        <p>{{band.likes | likes}}</p>
     </div>
 
     @if (isOwner)
@@ -38,6 +38,18 @@
     <div>
         <button (click)="toggleEditMode()">Edit</button>
         <button>Delete</button>
+    </div>
+    }
+    @else if (!hasLiked)
+    {
+    <div>
+        <button (click)="likeBand()">Like</button>
+    </div>
+    }
+    @else
+    {
+    <div>
+        <button (click)="unlikeBand()">Unlike</button>
     </div>
     }
 
