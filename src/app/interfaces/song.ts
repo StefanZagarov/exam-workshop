@@ -1,4 +1,5 @@
 import { User } from "./user";
+import { Comment } from "./comment";
 
 export interface Song
 {
@@ -8,5 +9,6 @@ export interface Song
     length: string;
     createdBy: User;
     likes: string[];
+    comments: Comment[];
     _id: string;
 }

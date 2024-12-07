@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component, OnChanges, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Band } from '../../interfaces/band';
 import { ApiService } from '../../api.service';
 import { UserService } from '../../user/user.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { LikesPipe } from '../../shared/pipes/likes.pipe';
+import { Comment } from '../../interfaces/comment';
 
 @Component({
   selector: 'app-band-details',
@@ -37,9 +38,9 @@ export class BandDetailsComponent
 
       this.isOwner = this.band.createdBy._id === this.userId;
 
-      // Check if has already liked the song
       this.hasLiked = this.band.likes.some(userId => userId === this.userId);
     });
+
   }
 
   toggleEditMode()
@@ -79,12 +80,40 @@ export class BandDetailsComponent
     });
   }
 
-  // TODO: Try to find a better way to update
   updateBandInfo()
   {
     this.apiService.getBandDetails(this.bandId).subscribe(band =>
     {
       this.band = band;
+    });
+  }
+
+  postComment(form: NgForm)
+  {
+    if (form.invalid) return;
+
+    const inputField = form.value;
+
+    const comment = {
+      content: inputField.comment,
+      creator: this.userId!,
+      createdAt: new Date().toISOString(),
+      updatedAt: ``
+    };
+
+    this.apiService.postBandComment(this.bandId, comment).subscribe(() =>
+    {
+      this.updateBandInfo();
+
+      form.reset();
+    });
+  }
+
+  deleteComment(commentId: string)
+  {
+    this.apiService.deleteBandComment(this.bandId, commentId).subscribe(() =>
+    {
+      this.updateBandInfo();
     });
   }
 }

@@ -53,8 +53,37 @@
     </div>
     }
 
-    <div>
-        <fieldset>Comments</fieldset>
+    <div style="margin-top: 150px;">
+        <fieldset>
+            <div>Comments</div>
+            @if(band.comments)
+            {
+            @for (comment of band.comments; track $index)
+            {
+            <div>
+                <p>{{comment.content}}</p>
+                @if(comment.creator === userId)
+                {
+                <button (click)="deleteComment(comment._id)">Delete</button>
+                }
+            </div>
+
+
+            }
+            }
+
+            <form #form="ngForm" (ngSubmit)="postComment(form)">
+                <div style="margin-top: 40px;">
+                    <textarea name="bandText" type="comment" name="comment" placeholder="Add a comment" ngModel
+                        #inputComment="ngModel" minlength="1" required></textarea>
+                </div>
+
+                <div>
+                    <button>Post Comment</button>
+                </div>
+            </form>
+
+        </fieldset>
     </div>
 </div>
 }

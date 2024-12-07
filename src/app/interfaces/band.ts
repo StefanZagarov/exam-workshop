@@ -1,4 +1,5 @@
 import { User } from "./user";
+import { Comment } from "./comment";
 
 export interface Band
 {
@@ -9,5 +10,6 @@ export interface Band
     description: string;
     createdBy: User;
     likes: string[];
+    comments: Comment[];
     _id: string;
 }

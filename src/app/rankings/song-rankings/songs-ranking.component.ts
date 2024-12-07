@@ -21,7 +21,7 @@ export class SongsRankingComponent implements OnInit
 
   ngOnInit(): void
   {
-    this.apiService.getAllSongs().subscribe(songs =>
+    this.apiService.getAllSongsByLikes().subscribe(songs =>
     {
       this.songs = songs;
 
