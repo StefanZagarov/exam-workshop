@@ -1,25 +1,52 @@
-<div class="navbar">
-    <ul>
-        <a routerLink="/" style="padding-right: 20px">Home</a>
+<header>
+    <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top" aria-label="Second navbar example">
+        <div class="container-fluid">
+            <a class="navbar-brand" routerLink="/">Distortion Pit</a>
 
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+                </li>
 
-        <a routerLink="/songs-ranking" style="padding-right: 20px">Songs Rankings</a>
-        <a routerLink="/bands-ranking" style="padding-right: 20px">Bands Rankings</a>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/songs-ranking">Songs Rankings</a>
+                </li>
 
-        @if(!isLoggedIn)
-        {
-        <a routerLink="/login" style="padding-right: 20px">Login</a>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/bands-ranking">Bands Rankings</a>
+                </li>
 
-        <a routerLink="/register" style="padding-right: 20px">Register</a>
-        }
-        @else
-        {
-        <a routerLink="/create-song" style="padding-right: 20px">Add a song</a>
-        <a routerLink="/create-band" style="padding-right: 20px">Add a band</a>
+                @if(!isLoggedIn)
+                {
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/login">Login</a>
+                </li>
 
-        <a routerLink="/profile" style="padding-right: 20px">{{username}}</a>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/register">Register</a>
+                </li>
+                }
+                @else
+                {
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/create-song">Add a song</a>
+                </li>
 
-        <a (click)="logout()">Logout</a>
-        }
-    </ul>
-</div>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/create-band">Add a band</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link float-start " routerLink="/profile">{{username}}</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" (click)="logout()" style="cursor: pointer;">Logout</a>
+                </li>
+                }
+
+            </ul>
+
+        </div>
+    </nav>
+</header>
