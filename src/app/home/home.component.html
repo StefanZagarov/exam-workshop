@@ -1,41 +1,80 @@
-<header>
+<div class="overflow-hidden bg-color" style="height: 100vh;">
+    <div class="container-fluid col-xxl-8">
+        <div class="row flex-lg-nowrap align-items-center g-5">
 
-    <!-- This div is  intentionally blank. It creates the transparent black overlay over the video which you can modify in the CSS -->
-    <div class="overlay"></div>
-
-    <!-- The HTML5 video element that will create the background video on the header -->
-    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-        <source src="https://cdn.coverr.co/videos/coverr-cinematic-snowy-mountains-7615/720p.mp4" type="video/mp4">
-    </video>
-
-    <!-- The header content -->
-    <div class="container h-100">
-        <div class="d-flex h-100 text-center align-items-center">
-            <div class="w-100 text-white">
-                <h1 class="display-3">Video Header</h1>
-                <p class="lead mb-0">Using HTML5 Video and Bootstrap</p>
+            @if(isLoggedIn)
+            {
+            <div class="order-lg-1 w-100">
+                <img style="clip-path: polygon(25% 0%, 100% 0%, 100% 99%, 0% 100%);"
+                    src="733cbe0322763653aaae866b959e059f.jpg" class="d-block mx-lg-auto img-fluid"
+                    alt="Photo by Milad Fakurian" loading="lazy" srcset="733cbe0322763653aaae866b959e059f.jpg"
+                    sizes="(max-width: 1080px) 100vw, 1080px" width="2160" height="768">
             </div>
+
+
+            <div class="col-lg-6 col-xl-5 text-center text-lg-start pt-lg-5 mt-xl-4">
+                <div class="lc-block mb-4">
+                    <div editable="rich">
+                        <h1 class="display-3" style=" color: white;">Welcome back to the <p class="fw-bold">Distortion
+                                Pit!
+                            </p>
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="lc-block mb-5">
+                    <div editable="rich">
+                        <p class="rfs-8" style="color: white; font-size: 24px;"> We missed you!</p>
+                    </div>
+                </div>
+
+                <div class="home-buttons">
+                    <div class="lc-block mb-6"><a class="btn btn-primary px-4 me-md-2 btn-lg" href="/songs-ranking"
+                            role="button"> Song Rankings</a>
+                    </div>
+                    <div class="lc-block mb-6"><a class="btn btn-primary px-4 me-md-2 btn-lg" href="/bands-ranking"
+                            role="button"> Band Rankings</a>
+                    </div>
+                </div>
+
+            </div>
+            }
+            @else
+            {
+            <div class="order-lg-1 w-100">
+                <img style="clip-path: polygon(25% 0%, 100% 0%, 100% 99%, 0% 100%);"
+                    src="soulfly2020-gettyimages-1212655970.jpg" class="d-block mx-lg-auto img-fluid"
+                    alt="Photo by Milad Fakurian" loading="lazy" srcset="soulfly2020-gettyimages-1212655970.jpg"
+                    sizes="(max-width: 1080px) 100vw, 1080px" width="2160" height="768">
+            </div>
+
+            <div class="col-lg-6 col-xl-5 text-center text-lg-start pt-lg-5 mt-xl-4">
+                <div class="lc-block mb-4">
+                    <div editable="rich">
+                        <h1 class="display-3" style=" color: white;">Welcome to the <p class="fw-bold">Distortion Pit!
+                            </p>
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="lc-block mb-5">
+                    <div editable="rich">
+                        <p class="rfs-8" style="color: white; font-size: 24px;"> Here you can add your favorite songs
+                            and bands, and check how they compare to the rest!</p>
+                    </div>
+                </div>
+
+                <div class="home-buttons">
+                    <div class="lc-block mb-6"><a class="btn btn-primary px-4 me-md-2 btn-lg" href="/register"
+                            role="button">Join us</a>
+                    </div>
+                    <div class="lc-block mb-6"><a class="btn btn-primary px-4 me-md-2 btn-lg" href="/login"
+                            role="button">Log in</a>
+                    </div>
+                </div>
+
+            </div>
+            }
         </div>
     </div>
-</header>
-
-<!-- Page section example for content below the video header -->
-<section class="my-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                <p>The HTML5 video element uses an mp4 video as a source. Change the source video to add in your own
-                    background! The header text is vertically centered using flex utilities that are built into
-                    Bootstrap.</p>
-                <p>The overlay color and opacity can be changed by modifying the <code>background-color</code> and
-                    <code>opacity</code> properties of the <code>.overlay</code> class in the CSS.
-                </p>
-                <p>Set the mobile fallback image in the CSS by changing the background image of the header element
-                    within the media query at the bottom of the CSS snippet.</p>
-                <p class="mb-0">
-                    Created by <a href="https://startbootstrap.com">Start Bootstrap</a>
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+</div>
