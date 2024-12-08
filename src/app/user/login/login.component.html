@@ -1,21 +1,26 @@
-<h1>Login</h1>
+<body class="d-flex align-items-center py-4 bg-color" style="height: 100vh;">
 
-<div>
-    <form [formGroup]="form" (ngSubmit)="login()">
-        <fieldset>
-            <p>
-                <label for="username"></label>
-                <input type="username" name="username" id="username" placeholder="username" formControlName="username">
+    <main class="form-signin w-100 m-auto">
+        <form [formGroup]="form" (ngSubmit)="login()">
+            <img class="mb-4" src="/hand-rock-and-roll-composition-illustration-vector.jpg" alt="" width="220"
+                height="220" style="margin-left: 40px; mix-blend-mode: multiply;">
+            <h1 class="h3 mb-3 fw-normal text-color" style="margin-left: 110px;">Log in</h1>
+
+            <div class="form-floating field-spacing">
+                <input type="username" name="username" class="form-control" id="floatingInput" placeholder="Username"
+                    formControlName="username">
+                <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating field-spacing">
+                <input type="username" name="password" class="form-control" id="floatingPassword" placeholder="Password"
+                    formControlName="password">
+                <label for="floatingPassword">Password</label>
+            </div>
+
+            <button class="btn btn-primary w-100 py-2" type="submit">Log in</button>
+            <p class="mt-5 mb-3 text-color">Not signed up? <a routerLink="/register">Register</a>
             </p>
+        </form>
+    </main>
 
-            <p>
-                <label for="password"></label>
-                <input type="password" name="password" id="password" placeholder="password" formControlName="password">
-            </p>
-
-            <button>Login</button>
-
-            <p> Not signed up? <a routerLink="/register">Register</a></p>
-        </fieldset>
-    </form>
-</div>
+</body>
