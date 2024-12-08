@@ -2,7 +2,7 @@
 
     <main class="form-signin w-100 m-auto">
         <form [formGroup]="form" (ngSubmit)="login()">
-            <img class="mb-4" src="/hand-rock-and-roll-composition-illustration-vector.jpg" alt="" width="220"
+            <img class="mb-4" src="hand-rock-and-roll-composition-illustration-vector.jpg" alt="" width="220"
                 height="220" style="margin-left: 40px; mix-blend-mode: multiply;">
             <h1 class="h3 mb-3 fw-normal text-color" style="margin-left: 110px;">Log in</h1>
 
@@ -12,12 +12,12 @@
                 <label for="floatingInput">Username</label>
             </div>
             <div class="form-floating field-spacing">
-                <input type="username" name="password" class="form-control" id="floatingPassword" placeholder="Password"
+                <input type="pass" name="password" class="form-control" id="floatingPassword" placeholder="Password"
                     formControlName="password">
                 <label for="floatingPassword">Password</label>
             </div>
 
-            <button class="btn btn-primary w-100 py-2" type="submit">Log in</button>
+            <button class="btn btn-primary w-100 py-2" type="submit" style="margin-top: 10px;">Log in</button>
             <p class="mt-5 mb-3 text-color">Not signed up? <a routerLink="/register">Register</a>
             </p>
         </form>

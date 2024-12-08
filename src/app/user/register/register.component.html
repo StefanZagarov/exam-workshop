@@ -1,35 +1,38 @@
-<h1>Register</h1>
+<body class="d-flex align-items-center py-4 bg-color" style="height: 100vh;">
 
-<div>
-    <form #form="ngForm" (ngSubmit)="register(form)">
-        <fieldset>
-            <p>
-                <label for="username"></label>
-                <input type="username" name="username" id="username" placeholder="username" ngModel
-                    #inputUsername="ngModel" required minlength="3">
-            </p>
+    <main class="form-signin w-100 m-auto">
+        <form #form="ngForm" (ngSubmit)="register(form)">
+            <img class="mb-4" src="metal-hand-sign-crossed-electric-600nw-2273777517.jpg" alt="" width="220"
+                height="220" style="margin-left: 40px; mix-blend-mode: multiply;">
+            <h1 class="h3 mb-3 fw-normal text-color" style="margin-left: 96px;">Register</h1>
 
-            <p>
-                <label for="email"></label>
-                <input type="email" name="email" id="email" placeholder="email" ngModel #inputEmail="ngModel" required
-                    email>
-            </p>
+            <div class="form-floating field-spacing">
+                <input type="username" name="username" class="form-control" id="floatingInput" placeholder="Username"
+                    ngModel #inputUsername="ngModel" required minlength="3">
+                <label for="floatingInput">Username</label>
+            </div>
 
-            <p>
-                <label for="password"></label>
-                <input type="password" name="password" id="password" placeholder="password" ngModel
-                    #inputPassword="ngModel" required minlength="6">
-            </p>
+            <div class="form-floating field-spacing">
+                <input type="mail" name="email" class="form-control" id="floatingPassword" placeholder="Email" ngModel
+                    #inputEmail="ngModel" required email>
+                <label for="floatingPassword">Email</label>
+            </div>
 
-            <p>
-                <label for="rePassword"></label>
-                <input type="rePassword" name="rePassword" id="rePassword" placeholder="rePassword" ngModel
-                    #inputrePassword="ngModel" required minlength="6">
-            </p>
+            <div class="form-floating field-spacing">
+                <input type="pass" name="password" class="form-control" id="floatingPassword" placeholder="Password"
+                    ngModel #inputPassword="ngModel" required minlength="6">
+                <label for="floatingPassword">Password</label>
+            </div>
 
-            <button>Register</button>
+            <div class="form-floating field-spacing">
+                <input type="rePass" name="rePassword" class="form-control" id="floatingPassword"
+                    placeholder="Repeat Password" ngModel #inputrePassword="ngModel" required minlength="6">
+                <label for="floatingPassword">Repeat Password</label>
+            </div>
 
-            <p> Have an account? <a routerLink="/login">Log In</a></p>
-        </fieldset>
-    </form>
-</div>
+            <button class="btn btn-primary w-100 py-2" type="submit" style="margin-top: 10px;">Register</button>
+            <p class="mt-5 mb-3 text-color">Have an account? <a routerLink="/login">Log In</a> </p>
+        </form>
+    </main>
+
+</body>

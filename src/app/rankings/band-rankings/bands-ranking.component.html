@@ -1,22 +1,82 @@
-<main>
-    <h1>Warriors of Metal</h1>
-    <div>
-        @for(band of bands; track $index)
-        {
-        <div [routerLink]="band._id">
-            <h2>{{band.name}}</h2>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-            <div>
-                <p>Genres</p>
-                <p>{{band.genres}}</p>
+<div class="event-schedule-area-two bg-color pad100 bg-color" style="padding-top: 80px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title text-center text-color" style="padding-bottom: 50px;">
+                    <div class="title-text">
+                        <h1>Hall of fame</h1>
+                    </div>
+                </div>
             </div>
-
-            <div>
-                <p>Likes</p>
-                <p>{{band.likes.length}}</p>
-            </div>
-
         </div>
-        }
+
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade active show" id="home" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    @for (band of bands; track $index)
+                                    {
+                                    <tr class="inner-box">
+
+                                        <th scope="row">
+                                            <div class="event-date">
+                                                <span>#{{$index+1}}</span>
+                                            </div>
+                                        </th>
+
+                                        <td>
+                                            <div class="event-img">
+                                                <img src="{{band.image}}"
+                                                    onerror="this.onerror=null; this.src='defaultImg.jpg'" />
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="event-wrap">
+                                                <h2><a routerLink="{{band._id}}">{{band.name}}</a></h2>
+
+                                                <div class="meta">
+                                                    <div class="organizers">
+                                                        <p>{{band.genres}}</p>
+                                                    </div>
+
+                                                    <div class="time">
+                                                        <p>{{band.origin}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="r-no">
+                                                <span>
+                                                    <p>Likes</p>
+                                                    <h4>{{band.likes | likes}}</h4>
+                                                </span>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="primary-btn">
+                                                <a class="btn btn-primary" href="#">Like</a>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
-</main>
+</div>

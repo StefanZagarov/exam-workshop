@@ -3,6 +3,7 @@ import { Comment } from "./comment";
 
 export interface Song
 {
+    albumImage: string;
     name: string;
     genres: string;
     band: string;

@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { Song } from '../../interfaces/song';
 import { RouterLink } from '@angular/router';
+import { LikesPipe } from '../../shared/pipes/likes.pipe';
 
 @Component({
   selector: 'app-song-rankings',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, LikesPipe],
   templateUrl: './songs-ranking.component.html',
   styleUrl: './songs-ranking.component.css'
 })
