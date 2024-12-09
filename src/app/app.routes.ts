@@ -10,6 +10,8 @@ import { BandsRankingComponent } from './rankings/band-rankings/bands-ranking.co
 import { SongsRankingComponent } from './rankings/song-rankings/songs-ranking.component';
 import { SongDetailsComponent } from './songs/song-details/song-details.component';
 import { BandDetailsComponent } from './bands/band-details/band-details.component';
+import { bandsRankingResolver } from './rankings/band-rankings/bands-ranking.resolver';
+import { songsRankingResolver } from './rankings/song-rankings/songs-ranking.resolver';
 
 export const routes: Routes = [
     // Home
@@ -17,7 +19,10 @@ export const routes: Routes = [
     { path: `home`, component: HomeComponent },
 
     // User related paths
-    { path: `register`, component: RegisterComponent },
+    {
+        path: `register`,
+        loadComponent: () => import(`./user/register/register.component`).then(c => c.RegisterComponent),
+    },
     { path: `login`, component: LoginComponent },
     { path: `profile`, component: ProfileComponent },
 
@@ -27,14 +32,22 @@ export const routes: Routes = [
     {
         path: `bands-ranking`,
         children: [
-            { path: ``, component: BandsRankingComponent },
+            {
+                path: ``,
+                loadComponent: () => import(`./rankings/band-rankings/bands-ranking.component`).then(c => c.BandsRankingComponent),
+                resolve: { bands: bandsRankingResolver },
+            },
             { path: `:bandId`, component: BandDetailsComponent }
         ]
     },
     {
         path: `songs-ranking`,
         children: [
-            { path: ``, component: SongsRankingComponent },
+            {
+                path: ``,
+                loadComponent: () => import(`./rankings/song-rankings/songs-ranking.component`).then(c => c.SongsRankingComponent),
+                resolve: { songs: songsRankingResolver }
+            },
             { path: `:songId`, component: SongDetailsComponent }
         ]
     },
