@@ -63,9 +63,26 @@
                                         </td>
 
                                         <td>
-                                            <div class="primary-btn">
-                                                <a class="btn btn-primary" href="#">Like</a>
+                                            @if (band.createdBy._id === userId)
+                                            {
+                                            <div>
+
                                             </div>
+                                            }
+                                            @else if (!hasLiked(band))
+                                            {
+                                            <div>
+                                                <button type="button" class="btn btn-primary"
+                                                    (click)="likeBand(band._id)">Like</button>
+                                            </div>
+                                            }
+                                            @else
+                                            {
+                                            <div>
+                                                <button class="btn btn-primary"
+                                                    (click)="unlikeBand(band._id)">Unlike</button>
+                                            </div>
+                                            }
                                         </td>
 
                                     </tr>

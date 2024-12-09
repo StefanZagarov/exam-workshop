@@ -57,6 +57,11 @@ export class ApiService
     return this.http.delete(`/api/song/${songId}/${commentId}`);
   }
 
+  deleteSong(songId: string)
+  {
+    return this.http.delete(`/api/song/${songId}`);
+  }
+
   createBand(bandImage: string, name: string, origin: string, genres: string, members: string, description: string)
   {
     return this.http.post<Band>(`/api/band/create`, {
@@ -104,5 +109,9 @@ export class ApiService
     return this.http.delete(`/api/band/${bandId}/${commentId}`);
   }
 
+  deleteBand(bandId: string)
+  {
+    return this.http.delete(`/api/band/${bandId}`);
+  }
   // TODO: Search bar functionality
 }

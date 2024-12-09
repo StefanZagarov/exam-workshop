@@ -57,21 +57,20 @@
             @if (isOwner)
             {
             <div>
-                <button class="btn btn-outline-primary" (click)="toggleEditMode()"
-                    style="margin-right: 1%;">Edit</button>
-                <button class="btn btn-outline-primary">Delete</button>
+                <button class="btn btn-primary" (click)="toggleEditMode()" style="margin-right: 1%;">Edit</button>
+                <button class="btn btn-primary" (click)="deleteBand()">Delete</button>
             </div>
             }
             @else if (!hasLiked)
             {
             <div>
-                <button class="btn btn-outline-primary" (click)="likeBand()">Like</button>
+                <button class="btn btn-primary" (click)="likeBand()">Like</button>
             </div>
             }
             @else
             {
             <div>
-                <button class="btn btn-outline-primary" (click)="unlikeBand()">Unlike</button>
+                <button class="btn btn-primary" (click)="unlikeBand()">Unlike</button>
             </div>
             }
         </div>
@@ -195,10 +194,9 @@
                         </div>
 
                         <div style="margin-bottom: 10%;">
-                            <button class="btn btn-outline-primary" style="margin-right: 1%;">Save
+                            <button class="btn btn-primary" style="margin-right: 1%;">Save
                                 changes</button>
-                            <button class="btn btn-outline-primary" type="button"
-                                (click)="toggleEditMode()">Cancel</button>
+                            <button class="btn btn-primary" type="button" (click)="toggleEditMode()">Cancel</button>
                         </div>
 
                     </form>

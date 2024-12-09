@@ -52,21 +52,20 @@
             @if (isOwner)
             {
             <div>
-                <button class="btn btn-outline-primary" (click)="toggleEditMode()"
-                    style="margin-right: 1%;">Edit</button>
-                <button class="btn btn-outline-primary">Delete</button>
+                <button class="btn btn-primary" (click)="toggleEditMode()" style="margin-right: 1%;">Edit</button>
+                <button class="btn btn-primary" (click)="deleteSong()">Delete</button>
             </div>
             }
             @else if (!hasLiked)
             {
             <div>
-                <button class="btn btn-outline-primary" (click)="likeSong()">Like</button>
+                <button class="btn btn-primary" (click)="likeSong()">Like</button>
             </div>
             }
             @else
             {
             <div>
-                <button class="btn btn-outline-primary" (click)="unlikeSong()">Unlike</button>
+                <button class="btn btn-primary" (click)="unlikeSong()">Unlike</button>
             </div>
             }
         </div>
@@ -179,8 +178,8 @@
                                     required minlength="3" [(ngModel)]="song.length">
                             </div>
                         </div>
-                        <button class="btn btn-outline-primary" style="margin-right: 1%;">Save changes</button>
-                        <button class="btn btn-outline-primary" type="button" (click)="toggleEditMode()">Cancel</button>
+                        <button class="btn btn-primary" style="margin-right: 1%;">Save changes</button>
+                        <button class="btn btn-primary" type="button" (click)="toggleEditMode()">Cancel</button>
                     </form>
                 </div>
             </div>

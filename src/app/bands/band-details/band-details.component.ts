@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Band } from '../../interfaces/band';
 import { ApiService } from '../../api.service';
 import { UserService } from '../../user/user.service';
@@ -14,10 +14,9 @@ import { LoaderComponent } from "../../shared/loader/loader.component";
   templateUrl: './band-details.component.html',
   styleUrl: './band-details.component.css'
 })
-// ONINIT WAS NOT IMPLEMENTED!?!?!?!?!?!? HOW DID NGONINIT WORK????
 export class BandDetailsComponent implements OnInit
 {
-  constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService, private userService: UserService) { }
+  constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService, private userService: UserService, private router: Router) { }
 
   band = {} as Band;
   isOwner = false;
@@ -60,6 +59,7 @@ export class BandDetailsComponent implements OnInit
 
     this.apiService.updateBand(this.bandId, name, origin, genres, members, description).subscribe(() =>
     {
+      this.updateBandPageInfo();
       this.toggleEditMode();
     });
   }
@@ -118,6 +118,14 @@ export class BandDetailsComponent implements OnInit
     this.apiService.deleteBandComment(this.bandId, commentId).subscribe(() =>
     {
       this.updateBandPageInfo();
+    });
+  }
+
+  deleteBand()
+  {
+    this.apiService.deleteBand(this.bandId).subscribe(() =>
+    {
+      this.router.navigate([`/bands-ranking`]);
     });
   }
 }

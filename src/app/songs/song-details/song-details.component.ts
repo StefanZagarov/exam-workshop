@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../api.service';
 import { UserService } from '../../user/user.service';
 import { Song } from '../../interfaces/song';
@@ -16,7 +16,7 @@ import { LoaderComponent } from '../../shared/loader/loader.component';
 })
 export class SongDetailsComponent implements OnInit
 {
-  constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService, private userService: UserService) { };
+  constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService, private userService: UserService, private router: Router) { };
 
   song = {} as Song;
   isOwner = false;
@@ -42,8 +42,6 @@ export class SongDetailsComponent implements OnInit
 
       this.hasLiked = this.song.likes.some(userId => userId === this.userId);
 
-      console.log(this.isOwner);
-
       this.hasLoaded = true;
     });
 
@@ -60,7 +58,11 @@ export class SongDetailsComponent implements OnInit
 
     const { albumImage, name, genres, band, length } = form.value;
 
-    this.apiService.updateSong(this.songId, albumImage, name, genres, band, length).subscribe(() => { this.toggleEditMode(); });
+    this.apiService.updateSong(this.songId, albumImage, name, genres, band, length).subscribe(() =>
+    {
+      this.updateSongPageInfo();
+      this.toggleEditMode();
+    });
   }
 
   likeSong()
@@ -117,6 +119,14 @@ export class SongDetailsComponent implements OnInit
     this.apiService.deleteSongComment(this.songId, commentId).subscribe(() =>
     {
       this.updateSongPageInfo();
+    });
+  }
+
+  deleteSong()
+  {
+    this.apiService.deleteSong(this.songId).subscribe(() =>
+    {
+      this.router.navigate([`/songs-ranking`]);
     });
   }
 }

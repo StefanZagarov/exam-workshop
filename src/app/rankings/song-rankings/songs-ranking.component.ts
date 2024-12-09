@@ -3,6 +3,7 @@ import { ApiService } from '../../api.service';
 import { Song } from '../../interfaces/song';
 import { RouterLink } from '@angular/router';
 import { LikesPipe } from '../../shared/pipes/likes.pipe';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'app-song-rankings',
@@ -13,12 +14,13 @@ import { LikesPipe } from '../../shared/pipes/likes.pipe';
 })
 export class SongsRankingComponent implements OnInit
 {
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private userService: UserService) { }
 
   songs: Song[] = [];
 
-  // TODO: Implement loading
-  isLoading = true;
+  userId: string | undefined = ``;
+
+  // TODO: Implement lazy loading
 
   ngOnInit(): void
   {
@@ -26,7 +28,36 @@ export class SongsRankingComponent implements OnInit
     {
       this.songs = songs;
 
-      this.isLoading = false;
+      this.userId = this.userService.user?._id;
+    });
+  }
+
+  likeSong(songId: string)
+  {
+    this.apiService.likeSong(this.userId!, songId).subscribe(() =>
+    {
+      this.updateSongsRankPage();
+    });
+  }
+
+  unlikeSong(songId: string)
+  {
+    this.apiService.unlikeSong(this.userId!, songId).subscribe(() =>
+    {
+      this.updateSongsRankPage();
+    });
+  }
+
+  hasLiked(song: Song)
+  {
+    return song.likes.some(userId => userId === this.userId);
+  }
+
+  updateSongsRankPage()
+  {
+    this.apiService.getAllSongsByLikes().subscribe(songs =>
+    {
+      this.songs = songs;
     });
   }
 }
