@@ -36,9 +36,9 @@ export class SongDetailsComponent implements OnInit
     {
       this.song = song;
 
-      this.isOwner = this.song.createdBy._id === this.userService.user?._id;
-
       this.userId = this.userService.user?._id;
+
+      this.isOwner = this.song.createdBy._id === this.userId;
 
       this.hasLiked = this.song.likes.some(userId => userId === this.userId);
 

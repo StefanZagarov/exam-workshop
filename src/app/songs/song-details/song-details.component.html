@@ -6,7 +6,7 @@
 {
 @if (!editMode)
 {
-<div class="bg-color text-color" style="width:100%; height:100%;">
+<div class="bg-color text-color" style="width: 100vw; height: 100vh; overflow: auto">
     <div class="container" style="padding-top: 5%;">
         <div class="row flex-lg-row-reverse align-items-center">
             <div class="col-lg-6">
@@ -49,7 +49,12 @@
         </div>
 
         <div style="margin-top: 3%;">
-            @if (isOwner)
+            @if (!userId)
+            {
+            <div>
+            </div>
+            }
+            @else if (isOwner)
             {
             <div>
                 <button class="btn btn-primary" (click)="toggleEditMode()" style="margin-right: 1%;">Edit</button>
@@ -75,6 +80,8 @@
     <div class="container bg-color">
         <div class="container be-comment-block bg-color">
 
+            @if(userId)
+            {
             <form class="form-block" #form="ngForm" (ngSubmit)="postComment(form)">
                 <div class="row">
                     <div class="col-xs-12">
@@ -87,6 +94,7 @@
                     <button class="btn btn-primary pull-right post-comment-btn">Post Comment</button>
                 </div>
             </form>
+            }
 
             @if(song.comments)
             {

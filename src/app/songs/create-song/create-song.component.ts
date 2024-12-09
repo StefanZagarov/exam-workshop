@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
+import { ImageUrlDirective } from '../../directives/image-url.directive';
 
 @Component({
   selector: 'app-create-song',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ImageUrlDirective],
   templateUrl: './create-song.component.html',
   styleUrl: './create-song.component.css'
 })

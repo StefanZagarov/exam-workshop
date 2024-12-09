@@ -33,24 +33,24 @@ export const appInterceptor: HttpInterceptorFn = (req, next) =>
     {
       // TODO: Implement later
       // Differentiate between errors of type 401 and every other error
-      // if (error.status == 401)
-      // {
-      //   // Navigate to login
-      //   router.navigate([`/login`]);
-      // }
-      // else
-      // {
-      //   // Set the error
-      //   errorService.setError(error);
-      //   // Navigate to error where we will display the error prompt
-      //   router.navigate([`/error`]);
-      // }
+      if (error.status == 401)
+      {
+        // Navigate to login
+        router.navigate([`/login`]);
+      }
+      else
+      {
+        // Set the error
+        errorService.setError(error);
+        // Navigate to error where we will display the error prompt
+        router.navigate([`/error`]);
+      }
 
 
       // Set the error
-      errorService.setError(error);
-      // Navigate to error where we will display the error prompt
-      router.navigate([`/error`]);
+      // errorService.setError(error);
+      // // Navigate to error where we will display the error prompt
+      // router.navigate([`/error`]);
 
 
       // Returns an array of errors

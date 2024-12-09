@@ -56,5 +56,5 @@ export const routes: Routes = [
 
 
     // Errors
-    { path: `error`, component: ErrorMsgComponent }
+    { path: 'error', component: ErrorMsgComponent },
 ];
