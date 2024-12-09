@@ -22,9 +22,9 @@ export class CreateSongComponent
       return;
     }
 
-    const { name, genres, band, length } = form.value;
+    const { albumImage, name, genres, band, length } = form.value;
     console.log(`asd`);
     // TODO: Get the user id from here (apiService.user._id)
-    this.apiService.createSong(name, genres, band, length).subscribe(() => this.router.navigate([`/songs-ranking`]));
+    this.apiService.createSong(albumImage, name, genres, band, length).subscribe(() => this.router.navigate([`/songs-ranking`]));
   }
 }

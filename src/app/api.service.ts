@@ -11,9 +11,10 @@ export class ApiService
 {
   constructor(private http: HttpClient) { }
 
-  createSong(name: string, genres: string, band: string, length: string)
+  createSong(albumImage: string, name: string, genres: string, band: string, length: string)
   {
     return this.http.post<Song>(`/api/song/create`, {
+      albumImage,
       name,
       genres,
       band,
@@ -56,9 +57,10 @@ export class ApiService
     return this.http.delete(`/api/song/${songId}/${commentId}`);
   }
 
-  createBand(name: string, origin: string, genres: string, members: string, description: string)
+  createBand(bandImage: string, name: string, origin: string, genres: string, members: string, description: string)
   {
     return this.http.post<Band>(`/api/band/create`, {
+      bandImage,
       name,
       origin,
       genres,

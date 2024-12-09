@@ -3,7 +3,7 @@ import { Comment } from "./comment";
 
 export interface Band
 {
-    image: string;
+    bandImage: string;
     name: string;
     origin: string;
     genres: string;

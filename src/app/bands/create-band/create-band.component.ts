@@ -22,9 +22,9 @@ export class CreateBandComponent
       return;
     }
 
-    const { name, origin, genres, members, description } = form.value;
+    const { bandImage, name, origin, genres, members, description } = form.value;
 
     // TODO: Take the user id from here (apiService.user._id)
-    this.apiService.createBand(name, origin, genres, members, description).subscribe(() => this.router.navigate([`/bands-ranking`]));
+    this.apiService.createBand(bandImage, name, origin, genres, members, description).subscribe(() => this.router.navigate([`/bands-ranking`]));
   }
 }

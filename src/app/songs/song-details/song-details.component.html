@@ -1,54 +1,70 @@
 @if (!editMode)
 {
-<div>
-    <h2>{{song.name}}</h2>
+<div class="bg-color text-color" style="height: 100vh;">
+    <div class="container" style="padding-top: 5%;">
+        <div class="row flex-lg-row-reverse align-items-center">
+            <div class="col-lg-6">
+                <div class="lc-block">
+                    <img class="img-fluid" src="{{song.albumImage}}" loading="lazy" width="900" height="900">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="lc-block">
+                    <h1 style="padding-bottom: 10%; font-size: 62px;">{{song.name}}</h1>
 
-    <div>
-        <p>Genres</p>
-        <p>{{song.genres}}</p>
+                    <div class="info">
+                        <h3>Band</h3>
+                        <p class="lead">{{song.band}} </p>
+                    </div>
+
+                    <div class="info">
+                        <h3>Genres</h3>
+                        <p class="lead">{{song.genres}} </p>
+                    </div>
+
+                    <div class="info">
+                        <h3>Length</h3>
+                        <p class="lead">{{song.length}} </p>
+                    </div>
+
+                    <div class="info">
+                        <h3>Created by</h3>
+                        <p class="lead">{{song.createdBy?.username}} </p>
+                    </div>
+
+                    <div>
+                        <h3>Likes</h3>
+                        <p class="lead">{{song.likes | likes}} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 3%;">
+            @if (isOwner)
+            {
+            <div>
+                <button class="btn btn-outline-primary" (click)="toggleEditMode()"
+                    style="margin-right: 1%;">Edit</button>
+                <button class="btn btn-outline-primary">Delete</button>
+            </div>
+            }
+            @else if (!hasLiked)
+            {
+            <div>
+                <button class="btn btn-outline-primary" (click)="likeSong()">Like</button>
+            </div>
+            }
+            @else
+            {
+            <div>
+                <button class="btn btn-outline-primary" (click)="unlikeSong()">Unlike</button>
+            </div>
+            }
+        </div>
     </div>
 
-    <div>
-        <p>Band</p>
-        <p>{{song.band}}</p>
-    </div>
-
-    <div>
-        <p>Length</p>
-        <p>{{song.length}}</p>
-    </div>
-
-    <div>
-        <p>Created by</p>
-        <p>{{song.createdBy?.username}}</p>
-    </div>
-
-    <div>
-        <p>Likes</p>
-        <p>{{song.likes | likes}}</p>
-    </div>
-
-
-    @if (isOwner)
-    {
-    <div>
-        <button (click)="toggleEditMode()">Edit</button>
-        <button>Delete</button>
-    </div>
-    }
-    @else if (!hasLiked)
-    {
-    <div>
-        <button (click)="likeSong()">Like</button>
-    </div>
-    }
-    @else
-    {
-    <div>
-        <button (click)="unlikeSong()">Unlike</button>
-    </div>
-    }
-    <div style="margin-top: 150px;">
+    <div style="margin-top: 3%;">
         <fieldset>
             <div>Comments</div>
             @if(song.comments)
@@ -57,9 +73,9 @@
             {
             <div>
                 <p>{{comment.content}}</p>
-                @if(comment.creator === userId)
+                @if(comment.creator._id === userId)
                 {
-                <button (click)="deleteComment(comment._id)">Delete</button>
+                <button class="btn btn-primary" (click)="deleteComment(comment._id)">Delete</button>
                 }
             </div>
             }
@@ -78,8 +94,51 @@
 
         </fieldset>
     </div>
-
 </div>
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+
+    <div class="be-comment-block">
+        @if(song.comments)
+        {
+        <h1 class="comments-title">Comments ({{song.comments.length}})</h1>
+        @for (comment of song.comments; track $index)
+        {
+        <div class="be-comment">
+            <div class="be-comment-content">
+                <span class="be-comment-name">
+                    <h4>{{comment.creator.username}}</h4>
+                </span>
+
+                <span class="be-comment-time">
+                    <i class="fa fa-clock-o"></i>
+                    {{comment.createdAt}}
+                </span>
+
+                <p class="be-comment-text">
+                    {{comment.content}}
+                </p>
+            </div>
+        </div>
+        }
+        }
+
+        <form class="form-block" #form="ngForm" (ngSubmit)="postComment(form)">
+            <div class="row">
+
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <textarea class="form-input" required="" placeholder="Your text"></textarea>
+                    </div>
+                </div>
+                <a class="btn btn-primary pull-right post-comment-btn">Post Comment</a>
+            </div>
+        </form>
+    </div>
+</div>
+
 }
 @else
 {
@@ -96,7 +155,7 @@
             @if(inputName?.errors?.['required']){
             <p>name is required!</p>
             }
-            <!--  -->
+
             @if(inputName?.errors?.['minlength']){
             <p>name must be at least 5 characters!</p>
             }

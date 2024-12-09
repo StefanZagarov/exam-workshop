@@ -1,38 +1,48 @@
-<h1>Add a band</h1>
+<body class="d-flex align-items-center py-4 bg-color" style="height: 100vh;">
 
-<div>
-    <form #form="ngForm" (ngSubmit)="createBand(form)">
-        <fieldset>
-            <p>
-                <label for="name"></label>
-                <input type="name" name="name" id="name" placeholder="name" ngModel #inputName="ngModel" required>
-            </p>
+    <main class="form-signin w-100 m-auto">
+        <form #form="ngForm" (ngSubmit)="createBand(form)">
+            <img class="mb-4" src="hard-rock-music-n-roll-cover-band-vector-50743125.jpg" alt="" width="220"
+                height="220" style="margin-left: 40px; mix-blend-mode: multiply;">
+            <h1 class="h3 mb-3 fw-normal text-color" style="margin-left: 96px;">Add band</h1>
 
-            <p>
-                <label for="origin"></label>
-                <input type="origin" name="origin" id="origin" placeholder="origin" ngModel #inputOrigin="ngModel"
-                    required minlength="2">
-            </p>
+            <div class="form-floating field-spacing">
+                <input type="bandImage" name="bandImage" class="form-control" id="bandImage" placeholder="Band Image"
+                    ngModel #inputBandImage="ngModel">
+                <label for="floatingInput">Band Image</label>
+            </div>
 
-            <p>
-                <label for="genres"></label>
-                <input type="genres" name="genres" id="genres" placeholder="genres" ngModel #inputGenres="ngModel"
-                    required minlength="2">
-            </p>
+            <div class="form-floating field-spacing">
+                <input type="name" name="name" class="form-control" id="name" placeholder="Name" ngModel
+                    #inputName="ngModel" required>
+                <label for="floatingInput">Name</label>
+            </div>
 
-            <p>
-                <label for="members"></label>
-                <input type="members" name="members" id="members" placeholder="members" ngModel #inputMembers="ngModel"
-                    required minlength="4">
-            </p>
+            <div class="form-floating field-spacing">
+                <input type="origin" name="origin" class="form-control" id="origin" placeholder="Origin" ngModel
+                    #inputOrigin="ngModel" required minlength="2">
+                <label for="floatingInput">Origin</label>
+            </div>
 
-            <p>
-                <label for="description"></label>
-                <input type="description" name="description" id="description" placeholder="description" ngModel
-                    #inputDescription="ngModel" required minlength="4">
-            </p>
+            <div class="form-floating field-spacing">
+                <input type="genres" name="genres" class="form-control" id="genres" placeholder="Genres" ngModel
+                    #inputreGenres="ngModel" required minlength="2">
+                <label for="floatingInput">Genres</label>
+            </div>
 
-            <button>Add band</button>
-        </fieldset>
-    </form>
-</div>
+            <div class="form-floating field-spacing">
+                <input type="members" name="members" class="form-control" id="members" placeholder="Members" ngModel
+                    #inputMembers="ngModel" required minlength="2">
+                <label for="floatingInput">Members</label>
+            </div>
+
+            <div class="form-floating field-spacing">
+                <textarea type="description" name="description" class="form-control" id="description"
+                    placeholder="Description" ngModel #inputreDescription="ngModel" required minlength="6"></textarea>
+                <label for="floatingInput">Description</label>
+            </div>
+
+            <button class="btn btn-primary w-100 py-2" type="submit" style="margin-top: 10px;">Add band</button>
+        </form>
+    </main>
+</body>
