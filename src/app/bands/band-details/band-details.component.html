@@ -1,130 +1,211 @@
+@if(!hasLoaded)
+{
+<app-loader />
+}
+@else
+{
 @if (!editMode)
 {
-<div>
-    <h2>{{band.name}}</h2>
+<div class="bg-color text-color" style="width:100%; height:100%;">
+    <div class="container" style="padding-top: 5%;">
+        <div class="row flex-lg-row-reverse align-items-center">
+            <div class="col-lg-6">
+                <div class="lc-block">
+                    <img class="img-fluid" src="{{band.bandImage}}" loading="lazy" width="900" height="900"
+                        onerror="this.onerror=null; this.src='defaultImg.jpg'">
 
-    <div>
-        <p>Genres</p>
-        <p>{{band.genres}}</p>
-    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="lc-block">
+                    <h1 style="padding-bottom: 10%; font-size: 62px;">{{band.name}}</h1>
 
-    <div>
-        <p>Origin</p>
-        <p>{{band.origin}}</p>
-    </div>
+                    <div class="info">
+                        <h3>Genres</h3>
+                        <p class="lead">{{band.genres}} </p>
+                    </div>
 
-    <div>
-        <p>Members</p>
-        <p>{{band.members}}</p>
-    </div>
+                    <div class="info">
+                        <h3>Origin</h3>
+                        <p class="lead">{{band.origin}} </p>
+                    </div>
 
-    <div>
-        <p>Description</p>
-        <p>{{band.description}}</p>
-    </div>
+                    <div class="info">
+                        <h3>Members</h3>
+                        <p class="lead">{{band.members}} </p>
+                    </div>
 
-    <div>
-        <p>Added by</p>
-        <p>{{band.createdBy?.username}}</p>
-    </div>
+                    <div class="info">
+                        <h3>Description</h3>
+                        <p class="lead">{{band.description}} </p>
+                    </div>
 
-    <div>
-        <p>Likes</p>
-        <p>{{band.likes | likes}}</p>
-    </div>
+                    <div class="info">
+                        <h3>Added by</h3>
+                        <p class="lead">{{band.createdBy?.username}} </p>
+                    </div>
 
-    @if (isOwner)
-    {
-    <div>
-        <button (click)="toggleEditMode()">Edit</button>
-        <button>Delete</button>
-    </div>
-    }
-    @else if (!hasLiked)
-    {
-    <div>
-        <button (click)="likeBand()">Like</button>
-    </div>
-    }
-    @else
-    {
-    <div>
-        <button (click)="unlikeBand()">Unlike</button>
-    </div>
-    }
+                    <div>
+                        <h3>Likes</h3>
+                        <p class="lead">{{band.likes | likes}} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div style="margin-top: 150px;">
-        <fieldset>
-            <div>Comments</div>
-            @if(band.comments)
-            {
-            @for (comment of band.comments; track $index)
+        <div style="margin-top: 3%;">
+            @if (isOwner)
             {
             <div>
-                <p>{{comment.content}}</p>
-                @if(comment.creator === userId)
-                {
-                <button (click)="deleteComment(comment._id)">Delete</button>
-                }
+                <button class="btn btn-outline-primary" (click)="toggleEditMode()"
+                    style="margin-right: 1%;">Edit</button>
+                <button class="btn btn-outline-primary">Delete</button>
             </div>
-
-
             }
+            @else if (!hasLiked)
+            {
+            <div>
+                <button class="btn btn-outline-primary" (click)="likeBand()">Like</button>
+            </div>
             }
+            @else
+            {
+            <div>
+                <button class="btn btn-outline-primary" (click)="unlikeBand()">Unlike</button>
+            </div>
+            }
+        </div>
 
-            <form #form="ngForm" (ngSubmit)="postComment(form)">
-                <div style="margin-top: 40px;">
-                    <textarea name="bandText" type="comment" name="comment" placeholder="Add a comment" ngModel
-                        #inputComment="ngModel" minlength="1" required></textarea>
-                </div>
+    </div>
 
-                <div>
-                    <button>Post Comment</button>
+    <div class="container bg-color">
+        <div class="container be-comment-block bg-color">
+
+            <form class="form-block" #form="ngForm" (ngSubmit)="postComment(form)">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <textarea class="form-input" name="bandText" type="comment" name="comment"
+                                placeholder="Add a comment" ngModel #inputComment="ngModel" minlength="1"
+                                required></textarea>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary pull-right post-comment-btn">Post Comment</button>
                 </div>
             </form>
 
-        </fieldset>
+            @if(band.comments)
+            {
+            <h1 class="comments-title">Comments ({{band.comments.length}})</h1>
+            @for (comment of band.comments; track $index)
+            {
+            <div class="be-comment comment-border">
+                <div class="be-comment-content">
+                    <span class="be-comment-name">
+                        <h4>{{comment.creator.username}}</h4>
+                    </span>
+
+                    <span class="be-comment-time">
+                        <i class="fa fa-clock-o"></i>
+                        {{comment.createdAt}}
+                    </span>
+
+                    <p class="be-comment-text">
+                        {{comment.content}}
+                    </p>
+                    @if(comment.creator._id === userId)
+                    {
+                    <button class="btn btn-primary" (click)="deleteComment(comment._id)">Delete</button>
+                    }
+                </div>
+            </div>
+            }
+            }
+        </div>
+
     </div>
+
 </div>
 }
 @else
 {
-<div>
-    <form #form="ngForm" (ngSubmit)="updateBand(form)">
-        <fieldset>
-            <p>
-                <label for="name"></label>
-                <input type="name" name="name" id="name" placeholder="name" ngModel #inputName="ngModel"
-                    [(ngModel)]="band.name" required>
-            </p>
+<div class="bg-color text-color" style="width: 100vw; height: 100vh; overflow: auto">
+    <div class="container" style="padding-top: 5%;">
+        <div class="row flex-lg-row-reverse align-items-center">
+            <div class="col-lg-6">
+                <div class="lc-block">
+                    <img class="img-fluid" src="{{band.bandImage}}" loading="lazy" width="900" height="900"
+                        onerror="this.onerror=null; this.src='defaultImg.jpg'">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="lc-block">
 
-            <p>
-                <label for="origin"></label>
-                <input type="origin" name="origin" id="origin" placeholder="origin" ngModel #inputOrigin="ngModel"
-                    [(ngModel)]="band.origin" required minlength="2">
-            </p>
+                    <form #form="ngForm" (ngSubmit)="updateBand(form)">
+                        <div class="form-floating field-spacing info">
+                            <input type="name" name="name" class="form-control" id="name" placeholder="Name"
+                                style="font-size: 62px; padding-top:42px; padding-bottom: 45px;" ngModel
+                                #inputName="ngModel" [(ngModel)]="band.name" required>
+                        </div>
 
-            <p>
-                <label for="genres"></label>
-                <input type="genres" name="genres" id="genres" placeholder="genres" ngModel #inputGenres="ngModel"
-                    [(ngModel)]="band.genres" required minlength="2">
-            </p>
+                        <div class="info">
+                            <h3>Band Image</h3>
+                            <div class="form-floating field-spacing info" style="color: black;">
+                                <input type="bandImage" name="bandImage" class="form-control" id="bandImage"
+                                    placeholder="Band Image" style="font-size: 20px; padding-bottom: 25px;" ngModel
+                                    #inputAlbumImage="ngModel" [(ngModel)]="band.bandImage">
+                            </div>
+                        </div>
 
-            <p>
-                <label for="members"></label>
-                <input type="members" name="members" id="members" placeholder="members" ngModel #inputMembers="ngModel"
-                    [(ngModel)]="band.members" required minlength="4">
-            </p>
+                        <div class="info">
+                            <h3>Genres</h3>
+                            <div class="form-floating field-spacing info" style="color: black;">
+                                <input type="genres" name="genres" class="form-control" id="genres" placeholder="Genres"
+                                    style="font-size: 20px; padding-bottom: 25px;" ngModel #inputBand="ngModel" required
+                                    minlength="2" [(ngModel)]="band.genres">
+                            </div>
+                        </div>
 
-            <p>
-                <label for="description"></label>
-                <input type="description" name="description" id="description" placeholder="description" ngModel
-                    #inputDescription="ngModel" [(ngModel)]="band.description" required minlength="4">
-            </p>
+                        <div class="info">
+                            <h3>Origin</h3>
+                            <div class="form-floating field-spacing info" style="color: black;">
+                                <input type="origin" name="origin" class="form-control" id="origin" placeholder="Origin"
+                                    style="font-size: 20px; padding-bottom: 25px;" ngModel #inputGenres="ngModel"
+                                    required minlength="2" [(ngModel)]="band.origin">
+                            </div>
+                        </div>
 
-            <button>Update band</button>
-            <button type="button" (click)="toggleEditMode()">Cancel</button>
-        </fieldset>
-    </form>
+                        <div class="info">
+                            <h3>Members</h3>
+                            <div class="form-floating field-spacing info" style="color: black;">
+                                <input type="members" name="members" class="form-control" id="members"
+                                    placeholder="Members" style="font-size: 20px; padding-bottom: 25px;" ngModel
+                                    #inputLength="ngModel" required minlength="2" [(ngModel)]="band.members">
+                            </div>
+                        </div>
+
+                        <div class="info">
+                            <h3>Description</h3>
+                            <div class="form-floating field-spacing info">
+                                <textarea type="description" name="description" class="form-control textarea"
+                                    id="description" placeholder="Description" style="height: 200px; min-height: 200px;"
+                                    ngModel #inputLength="ngModel" required minlength="6"
+                                    [(ngModel)]="band.description"></textarea>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 10%;">
+                            <button class="btn btn-outline-primary" style="margin-right: 1%;">Save
+                                changes</button>
+                            <button class="btn btn-outline-primary" type="button"
+                                (click)="toggleEditMode()">Cancel</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+}
 }

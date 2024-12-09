@@ -1,9 +1,13 @@
 .wrapper {
     min-width: 200px;
     min-height: 200px;
+    width: 100vw;
+    height: 100vh;
+
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #212529;
 }
 
 .loader {

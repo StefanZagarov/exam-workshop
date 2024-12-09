@@ -1,43 +1,4 @@
-<!-- <h1>Add a song</h1>
-
-<div>
-    <form #form="ngForm" (ngSubmit)="createSong(form)">
-        <fieldset>
-            <p>
-                <label for="albumImage"></label>
-                <input type="albumImage" name="albumImage" id="albumImage" placeholder="Album Image" ngModel
-                    #inputAlbumImage="ngModel">
-            </p>
-
-            <p>
-                <label for="name"></label>
-                <input type="name" name="name" id="name" placeholder="name" ngModel #inputName="ngModel" required>
-            </p>
-
-            <p>
-                <label for="genres"></label>
-                <input type="genres" name="genres" id="genres" placeholder="genres" ngModel #inputGenres="ngModel"
-                    required minlength="2">
-            </p>
-
-            <p>
-                <label for="band"></label>
-                <input type="band" name="band" id="band" placeholder="band" ngModel #inputDescription="ngModel"
-                    required>
-            </p>
-
-            <p>
-                <label for="length"></label>
-                <input type="length" name="length" id="length" placeholder="length" ngModel #inputDescription="ngModel"
-                    required>
-            </p>
-
-            <button>Add song</button>
-        </fieldset>
-    </form>
-</div> -->
-
-<body class="d-flex align-items-center py-4 bg-color" style="height: 100vh;">
+<body class="d-flex align-items-center py-4 bg-color" style="width: 100vw; height: 100vh;">
 
     <main class="form-signin w-100 m-auto">
         <form #form="ngForm" (ngSubmit)="createSong(form)">

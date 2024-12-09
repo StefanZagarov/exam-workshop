@@ -1,19 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Band } from '../../interfaces/band';
 import { ApiService } from '../../api.service';
 import { UserService } from '../../user/user.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { LikesPipe } from '../../shared/pipes/likes.pipe';
+import { LoaderComponent } from "../../shared/loader/loader.component";
 
 @Component({
   selector: 'app-band-details',
   standalone: true,
-  imports: [FormsModule, LikesPipe],
+  imports: [FormsModule, LikesPipe, LoaderComponent],
   templateUrl: './band-details.component.html',
   styleUrl: './band-details.component.css'
 })
-export class BandDetailsComponent
+// ONINIT WAS NOT IMPLEMENTED!?!?!?!?!?!? HOW DID NGONINIT WORK????
+export class BandDetailsComponent implements OnInit
 {
   constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService, private userService: UserService) { }
 
@@ -24,6 +26,8 @@ export class BandDetailsComponent
   hasLiked = false;
 
   userId: string | undefined = ``;
+
+  hasLoaded = false;
 
   ngOnInit(): void
   {
@@ -38,8 +42,9 @@ export class BandDetailsComponent
       this.isOwner = this.band.createdBy._id === this.userId;
 
       this.hasLiked = this.band.likes.some(userId => userId === this.userId);
-    });
 
+      this.hasLoaded = true;
+    });
   }
 
   toggleEditMode()
@@ -65,7 +70,7 @@ export class BandDetailsComponent
     {
       this.hasLiked = true;
 
-      this.updateBandInfo();
+      this.updateBandPageInfo();
     });
   }
 
@@ -75,11 +80,11 @@ export class BandDetailsComponent
     {
       this.hasLiked = false;
 
-      this.updateBandInfo();
+      this.updateBandPageInfo();
     });
   }
 
-  updateBandInfo()
+  updateBandPageInfo()
   {
     this.apiService.getBandDetails(this.bandId).subscribe(band =>
     {
@@ -102,7 +107,7 @@ export class BandDetailsComponent
 
     this.apiService.postBandComment(this.bandId, comment).subscribe(() =>
     {
-      this.updateBandInfo();
+      this.updateBandPageInfo();
 
       form.reset();
     });
@@ -112,7 +117,7 @@ export class BandDetailsComponent
   {
     this.apiService.deleteBandComment(this.bandId, commentId).subscribe(() =>
     {
-      this.updateBandInfo();
+      this.updateBandPageInfo();
     });
   }
 }

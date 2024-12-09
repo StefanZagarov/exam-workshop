@@ -32,9 +32,9 @@ export class ApiService
     return this.http.get<Song>(`/api/song/${id}`);
   }
 
-  updateSong(id: string, name: string, genres: string, band: string, length: string)
+  updateSong(id: string, albumImage: string, name: string, genres: string, band: string, length: string)
   {
-    return this.http.post<Song>(`/api/song/${id}`, { name, genres, band, length });
+    return this.http.post<Song>(`/api/song/${id}`, { albumImage, name, genres, band, length });
   }
 
   likeSong(userId: string, songId: string)

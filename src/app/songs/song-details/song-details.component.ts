@@ -5,11 +5,12 @@ import { UserService } from '../../user/user.service';
 import { Song } from '../../interfaces/song';
 import { FormsModule, NgForm } from '@angular/forms';
 import { LikesPipe } from '../../shared/pipes/likes.pipe';
+import { LoaderComponent } from '../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-song-details',
   standalone: true,
-  imports: [FormsModule, LikesPipe],
+  imports: [FormsModule, LikesPipe, LoaderComponent],
   templateUrl: './song-details.component.html',
   styleUrl: './song-details.component.css'
 })
@@ -25,6 +26,8 @@ export class SongDetailsComponent implements OnInit
 
   userId: string | undefined = ``;
 
+  hasLoaded = false;
+
   ngOnInit(): void
   {
     this.songId = this.activatedRoute.snapshot.params[`songId`];
@@ -38,6 +41,10 @@ export class SongDetailsComponent implements OnInit
       this.userId = this.userService.user?._id;
 
       this.hasLiked = this.song.likes.some(userId => userId === this.userId);
+
+      console.log(this.isOwner);
+
+      this.hasLoaded = true;
     });
 
   }
@@ -51,9 +58,9 @@ export class SongDetailsComponent implements OnInit
   {
     if (form.value.invalid) return;
 
-    const { name, genres, band, length } = form.value;
+    const { albumImage, name, genres, band, length } = form.value;
 
-    this.apiService.updateSong(this.songId, name, genres, band, length).subscribe(() => { this.toggleEditMode(); });
+    this.apiService.updateSong(this.songId, albumImage, name, genres, band, length).subscribe(() => { this.toggleEditMode(); });
   }
 
   likeSong()
@@ -62,7 +69,7 @@ export class SongDetailsComponent implements OnInit
     {
       this.hasLiked = true;
 
-      this.updateSongInfo();
+      this.updateSongPageInfo();
     });
   }
 
@@ -72,11 +79,11 @@ export class SongDetailsComponent implements OnInit
     {
       this.hasLiked = false;
 
-      this.updateSongInfo();
+      this.updateSongPageInfo();
     });
   }
 
-  updateSongInfo()
+  updateSongPageInfo()
   {
     this.apiService.getSongDetails(this.songId).subscribe(song =>
     {
@@ -99,7 +106,7 @@ export class SongDetailsComponent implements OnInit
 
     this.apiService.postSongComment(this.songId, comment).subscribe(() =>
     {
-      this.updateSongInfo();
+      this.updateSongPageInfo();
 
       form.reset();
     });
@@ -109,7 +116,7 @@ export class SongDetailsComponent implements OnInit
   {
     this.apiService.deleteSongComment(this.songId, commentId).subscribe(() =>
     {
-      this.updateSongInfo();
+      this.updateSongPageInfo();
     });
   }
 }

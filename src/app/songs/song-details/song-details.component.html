@@ -1,11 +1,19 @@
+@if (!hasLoaded)
+{
+<app-loader />
+}
+@else
+{
 @if (!editMode)
 {
-<div class="bg-color text-color" style="height: 100vh;">
+<div class="bg-color text-color" style="width:100%; height:100%;">
     <div class="container" style="padding-top: 5%;">
         <div class="row flex-lg-row-reverse align-items-center">
             <div class="col-lg-6">
                 <div class="lc-block">
-                    <img class="img-fluid" src="{{song.albumImage}}" loading="lazy" width="900" height="900">
+                    <img class="img-fluid" src="{{song.albumImage}}" loading="lazy" width="900" height="900"
+                        onerror="this.onerror=null; this.src='defaultImg.jpg'">
+
                 </div>
             </div>
             <div class="col-lg-6">
@@ -62,126 +70,122 @@
             </div>
             }
         </div>
+
     </div>
 
-    <div style="margin-top: 3%;">
-        <fieldset>
-            <div>Comments</div>
-            @if(song.comments)
-            {
-            @for (comment of song.comments; track $index)
-            {
-            <div>
-                <p>{{comment.content}}</p>
-                @if(comment.creator._id === userId)
-                {
-                <button class="btn btn-primary" (click)="deleteComment(comment._id)">Delete</button>
-                }
-            </div>
-            }
-            }
+    <div class="container bg-color">
+        <div class="container be-comment-block bg-color">
 
-            <form #form="ngForm" (ngSubmit)="postComment(form)">
-                <div style="margin-top: 40px;">
-                    <textarea name="bandText" type="comment" name="comment" placeholder="Add a comment" ngModel
-                        #inputComment="ngModel" minlength="1" required></textarea>
-                </div>
-
-                <div>
-                    <button>Post Comment</button>
+            <form class="form-block" #form="ngForm" (ngSubmit)="postComment(form)">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <textarea class="form-input" name="bandText" type="comment" name="comment"
+                                placeholder="Add a comment" ngModel #inputComment="ngModel" minlength="1"
+                                required></textarea>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary pull-right post-comment-btn">Post Comment</button>
                 </div>
             </form>
 
-        </fieldset>
-    </div>
-</div>
+            @if(song.comments)
+            {
+            <h1 class="comments-title">Comments ({{song.comments.length}})</h1>
+            @for (comment of song.comments; track $index)
+            {
+            <div class="be-comment comment-border">
+                <div class="be-comment-content">
+                    <span class="be-comment-name">
+                        <h4>{{comment.creator.username}}</h4>
+                    </span>
 
+                    <span class="be-comment-time">
+                        <i class="fa fa-clock-o"></i>
+                        {{comment.createdAt}}
+                    </span>
 
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container">
-
-    <div class="be-comment-block">
-        @if(song.comments)
-        {
-        <h1 class="comments-title">Comments ({{song.comments.length}})</h1>
-        @for (comment of song.comments; track $index)
-        {
-        <div class="be-comment">
-            <div class="be-comment-content">
-                <span class="be-comment-name">
-                    <h4>{{comment.creator.username}}</h4>
-                </span>
-
-                <span class="be-comment-time">
-                    <i class="fa fa-clock-o"></i>
-                    {{comment.createdAt}}
-                </span>
-
-                <p class="be-comment-text">
-                    {{comment.content}}
-                </p>
-            </div>
-        </div>
-        }
-        }
-
-        <form class="form-block" #form="ngForm" (ngSubmit)="postComment(form)">
-            <div class="row">
-
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        <textarea class="form-input" required="" placeholder="Your text"></textarea>
-                    </div>
+                    <p class="be-comment-text">
+                        {{comment.content}}
+                    </p>
+                    @if(comment.creator._id === userId)
+                    {
+                    <button class="btn btn-primary" (click)="deleteComment(comment._id)">Delete</button>
+                    }
                 </div>
-                <a class="btn btn-primary pull-right post-comment-btn">Post Comment</a>
             </div>
-        </form>
+            }
+            }
+        </div>
+
     </div>
+
 </div>
 
 }
 @else
 {
-<form #form="ngForm" (ngSubmit)="updateSong(form)">
-    <fieldset>
-        <p>
-            <label for="name"></label>
-            <input type="name" name="name" id="name" placeholder="name" ngModel #inputName="ngModel"
-                [(ngModel)]="song.name" required>
-        </p>
+<div class="bg-color text-color" style="width: 100vw; height: 100vh;">
+    <div class="container" style="padding-top: 5%;">
+        <div class="row flex-lg-row-reverse align-items-center">
+            <div class="col-lg-6">
+                <div class="lc-block">
+                    <img class="img-fluid" src="{{song.albumImage}}" loading="lazy" width="900" height="900"
+                        onerror="this.onerror=null; this.src='defaultImg.jpg'">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="lc-block">
 
-        @if(inputName?.touched){
-        <div>
-            @if(inputName?.errors?.['required']){
-            <p>name is required!</p>
-            }
+                    <form #form="ngForm" (ngSubmit)="updateSong(form)">
+                        <div class="form-floating field-spacing info">
+                            <input type="name" name="name" class="form-control" id="name" placeholder="Name"
+                                style="font-size: 62px; padding-top:42px; padding-bottom: 45px;" ngModel
+                                #inputName="ngModel" [(ngModel)]="song.name" required>
+                        </div>
 
-            @if(inputName?.errors?.['minlength']){
-            <p>name must be at least 5 characters!</p>
-            }
+                        <div class="info">
+                            <h3>Album Image</h3>
+                            <div class="form-floating field-spacing info" style="color: black;">
+                                <input type="albumImage" name="albumImage" class="form-control" id="albumImage"
+                                    placeholder="Album Image" style="font-size: 20px; padding-bottom: 25px;" ngModel
+                                    #inputAlbumImage="ngModel" [(ngModel)]="song.albumImage">
+                            </div>
+                        </div>
+
+                        <div class="info">
+                            <h3>Band</h3>
+                            <div class="form-floating field-spacing info" style="color: black;">
+                                <input type="band" name="band" class="form-control" id="band" placeholder="Band"
+                                    style="font-size: 20px; padding-bottom: 25px;" ngModel #inputBand="ngModel" required
+                                    minlength="3" [(ngModel)]="song.band">
+                            </div>
+                        </div>
+
+                        <div class="info">
+                            <h3>Genres</h3>
+                            <div class="form-floating field-spacing info" style="color: black;">
+                                <input type="genres" name="genres" class="form-control" id="genres" placeholder="Genres"
+                                    style="font-size: 20px; padding-bottom: 25px;" ngModel #inputGenres="ngModel"
+                                    required minlength="3" [(ngModel)]="song.genres">
+                            </div>
+                        </div>
+
+                        <div class="info">
+                            <h3>Length</h3>
+                            <div class="form-floating field-spacing info" style="color: black;">
+                                <input type="length" name="length" class="form-control" id="length" placeholder="Length"
+                                    style="font-size: 20px; padding-bottom: 25px;" ngModel #inputLength="ngModel"
+                                    required minlength="3" [(ngModel)]="song.length">
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-primary" style="margin-right: 1%;">Save changes</button>
+                        <button class="btn btn-outline-primary" type="button" (click)="toggleEditMode()">Cancel</button>
+                    </form>
+                </div>
+            </div>
         </div>
-
-        }
-        <p>
-            <label for="genres"></label>
-            <input type="genres" name="genres" id="genres" placeholder="genres" ngModel #inputGenres="ngModel"
-                [(ngModel)]="song.genres" required minlength="2">
-        </p>
-
-        <p>
-            <label for="band"></label>
-            <input type="band" name="band" id="band" placeholder="band" ngModel #inputDescription="ngModel"
-                [(ngModel)]="song.band" required>
-        </p>
-
-        <p>
-            <label for="length"></label>
-            <input type="length" name="length" id="length" placeholder="length" ngModel #inputDescription="ngModel"
-                [(ngModel)]="song.length" required>
-        </p>
-
-        <button>Edit song</button>
-        <button type="button" (click)="toggleEditMode()">Cancel</button>
-    </fieldset>
-</form>
+    </div>
+</div>
+}
 }
