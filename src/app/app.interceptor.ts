@@ -1,17 +1,18 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { environment } from '../environment/environment';
-import { catchError } from 'rxjs';
-import { Router } from '@angular/router';
 import { inject } from '@angular/core';
-import { ErrorMsgService } from './core/error-msg/error-msg.service';
+import { ErrorService } from './core/error-msg/error-msg.service';
+import { catchError, throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../environment/environment';
 
-
-// Get our API URL
-const { apiUrl } = environment;
-const API = `/api`;
-
-export const appInterceptor: HttpInterceptorFn = (req, next) =>
+export const errorInterceptor: HttpInterceptorFn = (req, next) =>
 {
+  const errorService = inject(ErrorService);
+
+  // Get our API URL
+  const { apiUrl } = environment;
+  const API = `/api`;
+
   // If the request URL begins with what we want to intercept
   if (req.url.startsWith(API))
   {
@@ -24,37 +25,13 @@ export const appInterceptor: HttpInterceptorFn = (req, next) =>
     });
   }
 
-  // Injectable
-  const errorService = inject(ErrorMsgService);
-  const router = inject(Router);
-
   return next(req).pipe(
-    catchError(error =>
+    catchError((error: HttpErrorResponse) =>
     {
-      // TODO: Implement later
-      // Differentiate between errors of type 401 and every other error
-      if (error.status == 401)
-      {
-        // Navigate to login
-        router.navigate([`/login`]);
-      }
-      else
-      {
-        // Set the error
-        errorService.setError(error);
-        // Navigate to error where we will display the error prompt
-        router.navigate([`/error`]);
-      }
-
-
-      // Set the error
-      // errorService.setError(error);
-      // // Navigate to error where we will display the error prompt
-      // router.navigate([`/error`]);
-
-
-      // Returns an array of errors
-      return [error];
+      errorService.handleError(error);
+      return throwError(() => error);
     })
   );
 };
+
+

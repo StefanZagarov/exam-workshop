@@ -1,13 +1,9 @@
 import { Routes } from '@angular/router';
-import { RegisterComponent } from './user/register/register.component';
 import { HomeComponent } from './home/home.component';
-import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
 import { LoginComponent } from './user/login/login.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { CreateBandComponent } from './bands/create-band/create-band.component';
 import { CreateSongComponent } from './songs/create-song/create-song.component';
-import { BandsRankingComponent } from './rankings/band-rankings/bands-ranking.component';
-import { SongsRankingComponent } from './rankings/song-rankings/songs-ranking.component';
 import { SongDetailsComponent } from './songs/song-details/song-details.component';
 import { BandDetailsComponent } from './bands/band-details/band-details.component';
 import { bandsRankingResolver } from './rankings/band-rankings/bands-ranking.resolver';
@@ -50,11 +46,5 @@ export const routes: Routes = [
             },
             { path: `:songId`, component: SongDetailsComponent }
         ]
-    },
-
-    // Details
-
-
-    // Errors
-    { path: 'error', component: ErrorMsgComponent },
+    }
 ];

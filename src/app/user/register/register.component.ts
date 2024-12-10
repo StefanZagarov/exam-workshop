@@ -15,22 +15,15 @@ export class RegisterComponent
   // Template-driven form
   constructor(private userService: UserService, private router: Router) { }
 
-  // Create submit handler
-
   register(form: NgForm)
   {
-    console.log(form.value);
-    const { username, email, password, rePassword } = form.value;
-
-    console.log(username, email, password, rePassword);
-    // Use user.service.ts to send the data 
-    // User service will connect to the back-end API to store the data
     if (form.invalid)
     {
       console.log(`Invalid register form!`);
       return;
     }
 
+    const { username, email, password, rePassword } = form.value;
 
     this.userService.register(username, email, password, rePassword).subscribe(() =>
       this.router.navigate([`/`])

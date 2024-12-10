@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router, RouterLink } from '@angular/router';
+import { ToastService } from '../../toast/toast.service';
+import { catchError, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +15,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class LoginComponent
 {
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private toastService: ToastService, private http: HttpClient) { }
 
   form = new FormGroup({
     username: new FormControl(``, [Validators.required, Validators.minLength(3)]),
@@ -33,5 +36,21 @@ export class LoginComponent
     {
       this.router.navigate([`/`]);
     });
+  }
+
+  isFieldTextMissing(controlName: string)
+  {
+    return (
+      this.form.get(controlName)?.touched &&
+      this.form.get(controlName)?.errors?.['required']
+    );
+  }
+
+  isNotMinLength(field: string)
+  {
+    return (
+      this.form.get(field)?.touched &&
+      this.form.get(field)?.errors?.['minlength']
+    );
   }
 }

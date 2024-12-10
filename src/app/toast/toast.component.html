@@ -1,0 +1,8 @@
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1050">
+    <div *ngFor="let toast of toastService.getToasts()" class="toast show"
+        [ngClass]="toast.type === 'error' ? 'text-bg-danger' : 'text-bg-success'" role="alert">
+        <div class="toast-body">
+            {{ toast.message }}
+        </div>
+    </div>
+</div>`,
