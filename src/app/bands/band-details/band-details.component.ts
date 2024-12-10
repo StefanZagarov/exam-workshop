@@ -6,17 +6,19 @@ import { UserService } from '../../user/user.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { LikesPipe } from '../../shared/pipes/likes.pipe';
 import { LoaderComponent } from "../../shared/loader/loader.component";
+import { ImageUrlDirective } from '../../directives/image-url.directive';
+import { ToastService } from '../../toast/toast.service';
 
 @Component({
   selector: 'app-band-details',
   standalone: true,
-  imports: [FormsModule, LikesPipe, LoaderComponent],
+  imports: [FormsModule, LikesPipe, LoaderComponent, ImageUrlDirective],
   templateUrl: './band-details.component.html',
   styleUrl: './band-details.component.css'
 })
 export class BandDetailsComponent implements OnInit
 {
-  constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService, private userService: UserService, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService, private userService: UserService, private router: Router, private toastService: ToastService) { }
 
   band = {} as Band;
   isOwner = false;
@@ -48,12 +50,17 @@ export class BandDetailsComponent implements OnInit
 
   toggleEditMode()
   {
+    this.updateBandPageInfo();
     this.editMode = !this.editMode;
   }
 
   updateBand(form: NgForm)
   {
-    if (form.value.invalid) return;
+    if (form.invalid)
+    {
+      this.toastService.show(`Please fill all fields correctly!`, `error`);
+      return;
+    };
 
     const { name, origin, genres, members, description } = form.value;
 

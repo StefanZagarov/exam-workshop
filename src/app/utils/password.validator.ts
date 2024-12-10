@@ -7,11 +7,8 @@ export function matchPasswordsValidator(
 {
     return (control) =>
     {
-        const password = control.get(controlPassword);
-        const rePassword = control.get(controlRePassword);
-
         const samePassword =
-            password?.value === rePassword?.value;
+            controlPassword === controlRePassword;
 
         return samePassword ? null : { matchPasswordsValidator: true };
     };

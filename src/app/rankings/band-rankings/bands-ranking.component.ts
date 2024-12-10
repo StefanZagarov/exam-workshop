@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { Band } from '../../interfaces/band';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LikesPipe } from '../../shared/pipes/likes.pipe';
 import { UserService } from '../../user/user.service';
-import { LoaderComponent } from '../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-bands-ranking',
@@ -31,7 +30,6 @@ export class BandsRankingComponent implements OnInit
     this.userId = this.userService.user?._id;
 
     this.hasLoaded = true;
-
   }
 
   likeBand(bandId: string)

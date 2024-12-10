@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit
 
   ngOnInit(): void
   {
+    console.log(this.userService.user!);
     const { username, email } = this.userService.user!;
 
     this.profileDetails = { username, email };

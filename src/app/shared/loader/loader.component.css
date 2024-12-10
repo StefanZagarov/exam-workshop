@@ -17,7 +17,7 @@
     display: inline-block;
     position: relative;
     border: 3px solid;
-    border-color: #234465 #234465 transparent transparent;
+    border-color: #000000 #000000 transparent transparent;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
 }
@@ -33,7 +33,7 @@
     bottom: 0;
     margin: auto;
     border: 3px solid;
-    border-color: transparent transparent #ff9f00 #ff9f00;
+    border-color: transparent transparent #ffffff #ffffff;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -45,7 +45,7 @@
 .loader::before {
     width: 32px;
     height: 32px;
-    border-color: #234465 #234465 transparent transparent;
+    border-color: #000000 #000000 transparent transparent;
     animation: rotation 1.5s linear infinite;
 }
 

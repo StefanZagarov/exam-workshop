@@ -152,7 +152,22 @@
                         <div class="form-floating field-spacing info">
                             <input type="name" name="name" class="form-control" id="name" placeholder="Name"
                                 style="font-size: 62px; padding-top:42px; padding-bottom: 45px;" ngModel
-                                #inputName="ngModel" [(ngModel)]="band.name" required>
+                                #inputName="ngModel" [(ngModel)]="band.name" required [class]="(
+            (inputName?.touched && inputName?.errors?.['required']))
+             ? 'is-invalid': ''">
+
+                            @if (inputName?.touched && inputName?.errors?.['required'])
+                            {
+                            <small class="text-danger" style="font-size: 24px;">
+                                Name is required!
+                            </small>
+                            }
+                            @else if(inputName?.touched){
+                            <small class="text-danger" style="font-size: 24px;">
+                                Changing the name will reset the likes!
+                            </small>
+                            }
+
                         </div>
 
                         <div class="info">
@@ -160,26 +175,68 @@
                             <div class="form-floating field-spacing info" style="color: black;">
                                 <input type="bandImage" name="bandImage" class="form-control" id="bandImage"
                                     placeholder="Band Image" style="font-size: 20px; padding-bottom: 25px;" ngModel
-                                    #inputAlbumImage="ngModel" [(ngModel)]="band.bandImage">
+                                    #inputBandImage="ngModel" [(ngModel)]="band.bandImage" required appImageUrl [class]="(
+            (inputBandImage?.touched && inputBandImage?.errors?.['required']) || 
+             (inputBandImage?.touched && inputBandImage?.errors?.['imageValidator']))
+             ? 'is-invalid': ''">
                             </div>
+
+                            @if(inputBandImage?.touched){
+                            <div>
+                                @if(inputBandImage?.errors?.['required'] || inputBandImage?.errors?.['imageValidator']){
+                                <small class="text-danger">
+                                    Must start with http/s://
+                                </small>
+                                }
+                            </div>
+                            }
+
                         </div>
 
                         <div class="info">
                             <h3>Genres</h3>
                             <div class="form-floating field-spacing info" style="color: black;">
                                 <input type="genres" name="genres" class="form-control" id="genres" placeholder="Genres"
-                                    style="font-size: 20px; padding-bottom: 25px;" ngModel #inputBand="ngModel" required
-                                    minlength="2" [(ngModel)]="band.genres">
+                                    style="font-size: 20px; padding-bottom: 25px;" ngModel #inputGenres="ngModel"
+                                    required minlength="2" [(ngModel)]="band.genres" [class]="(
+            (inputGenres?.touched && inputGenres?.errors?.['required']) || 
+             (inputGenres?.touched && inputGenres?.errors?.['minlength']))
+             ? 'is-invalid': ''">
                             </div>
+
+                            @if(inputGenres?.touched){
+                            <div>
+                                @if(inputGenres?.errors?.['required'] || inputGenres?.errors?.['minlength']){
+                                <small class="text-danger">
+                                    Must be at least 2 characters
+                                </small>
+                                }
+                            </div>
+                            }
+
                         </div>
 
                         <div class="info">
                             <h3>Origin</h3>
                             <div class="form-floating field-spacing info" style="color: black;">
                                 <input type="origin" name="origin" class="form-control" id="origin" placeholder="Origin"
-                                    style="font-size: 20px; padding-bottom: 25px;" ngModel #inputGenres="ngModel"
-                                    required minlength="2" [(ngModel)]="band.origin">
+                                    style="font-size: 20px; padding-bottom: 25px;" ngModel #inputOrigin="ngModel"
+                                    required minlength="2" [(ngModel)]="band.origin" [class]="(
+            (inputOrigin?.touched && inputOrigin?.errors?.['required']) || 
+             (inputOrigin?.touched && inputOrigin?.errors?.['minlength']))
+             ? 'is-invalid': ''">
                             </div>
+
+                            @if(inputOrigin?.touched){
+                            <div>
+                                @if(inputOrigin?.errors?.['required'] || inputOrigin?.errors?.['minlength']){
+                                <small class="text-danger">
+                                    Must be at least 2 characters
+                                </small>
+                                }
+                            </div>
+                            }
+
                         </div>
 
                         <div class="info">
@@ -187,8 +244,22 @@
                             <div class="form-floating field-spacing info" style="color: black;">
                                 <input type="members" name="members" class="form-control" id="members"
                                     placeholder="Members" style="font-size: 20px; padding-bottom: 25px;" ngModel
-                                    #inputLength="ngModel" required minlength="2" [(ngModel)]="band.members">
+                                    #inputMembers="ngModel" required minlength="2" [(ngModel)]="band.members" [class]="(
+            (inputMembers?.touched && inputMembers?.errors?.['required']) || 
+             (inputMembers?.touched && inputMembers?.errors?.['minlength']))
+             ? 'is-invalid': ''">
                             </div>
+
+                            @if(inputMembers?.touched){
+                            <div>
+                                @if(inputMembers?.errors?.['required'] || inputMembers?.errors?.['minlength']){
+                                <small class="text-danger">
+                                    Must be at least 2 characters
+                                </small>
+                                }
+                            </div>
+                            }
+
                         </div>
 
                         <div class="info">
@@ -196,9 +267,23 @@
                             <div class="form-floating field-spacing info">
                                 <textarea type="description" name="description" class="form-control textarea"
                                     id="description" placeholder="Description" style="height: 200px; min-height: 200px;"
-                                    ngModel #inputLength="ngModel" required minlength="6"
-                                    [(ngModel)]="band.description"></textarea>
+                                    ngModel #inputDescription="ngModel" required minlength="6"
+                                    [(ngModel)]="band.description" [class]="(
+            (inputDescription?.touched && inputDescription?.errors?.['required']) || 
+             (inputDescription?.touched && inputDescription?.errors?.['minlength']))
+             ? 'is-invalid': ''"></textarea>
                             </div>
+
+                            @if(inputDescription?.touched){
+                            <div>
+                                @if(inputDescription?.errors?.['required'] || inputDescription?.errors?.['minlength']){
+                                <small class="text-danger">
+                                    Must be at least 6 characters
+                                </small>
+                                }
+                            </div>
+                            }
+
                         </div>
 
                         <div style="margin-bottom: 10%;">

@@ -15,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent
 {
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private toastService: ToastService) { }
 
   form = new FormGroup({
     username: new FormControl(``, [Validators.required, Validators.minLength(3)]),
@@ -26,7 +26,7 @@ export class LoginComponent
   {
     if (this.form.invalid)
     {
-      console.log(`Invalid login form!`);
+      this.toastService.show(`Please fill all fields correctly!`, `error`);
       return;
     }
 

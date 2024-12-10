@@ -8,6 +8,6 @@ export function imageUrlValidator(): ValidatorFn
     {
         const isInvalid = control.value === '' || regExp.test(control.value);
 
-        return isInvalid ? null : { emailValidator: true };
+        return isInvalid ? null : { imageValidator: true };
     };
 }

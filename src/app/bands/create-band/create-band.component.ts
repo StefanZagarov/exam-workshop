@@ -3,6 +3,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { ApiService } from '../../api.service';
 import { Router } from '@angular/router';
 import { ImageUrlDirective } from '../../directives/image-url.directive';
+import { ToastService } from '../../toast/toast.service';
 
 @Component({
   selector: 'app-create-band',
@@ -13,7 +14,7 @@ import { ImageUrlDirective } from '../../directives/image-url.directive';
 })
 export class CreateBandComponent
 {
-  constructor(private apiService: ApiService, private router: Router) { };
+  constructor(private apiService: ApiService, private router: Router, private toastServie: ToastService) { };
   // bandImage = ``;
   createBand(form: NgForm)
   {
@@ -21,7 +22,7 @@ export class CreateBandComponent
 
     if (form.invalid)
     {
-      console.log(`Invalid create band form!`);
+      this.toastServie.show('Please fill all fields correctly!', `error`);
       return;
     }
     const { bandImage, name, origin, genres, members, description } = form.value;

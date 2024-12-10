@@ -8,26 +8,87 @@
 
             <div class="form-floating field-spacing">
                 <input type="username" name="username" class="form-control" id="floatingInput" placeholder="Username"
-                    ngModel #inputUsername="ngModel" required minlength="3">
+                    ngModel #inputUsername="ngModel" required minlength="3" [class]="(
+            (inputUsername?.touched && inputUsername?.errors?.['required']) || 
+             (inputUsername?.touched && inputUsername?.errors?.['minlength']))
+             ? 'is-invalid': ''">
                 <label for="floatingInput">Username</label>
+
+                @if(inputUsername?.touched){
+                <div>
+                    @if(inputUsername?.errors?.['required'] || inputUsername?.errors?.['minlength']){
+
+                    <small class="text-danger">
+                        Must be at least 3 characters long
+                    </small>
+                    }
+                </div>
+                }
+
             </div>
 
             <div class="form-floating field-spacing">
-                <input type="mail" name="email" class="form-control" id="floatingPassword" placeholder="Email" ngModel
-                    #inputEmail="ngModel" required email>
+                <input type="mail" name="email" class="form-control" id="floatingEmail" placeholder="Email" ngModel
+                    #inputEmail="ngModel" required email [class]="(
+            (inputEmail?.touched && inputEmail?.errors?.['required']) || 
+             (inputEmail?.touched && inputEmail?.errors?.['email']))
+             ? 'is-invalid': ''">
                 <label for="floatingInput">Email</label>
+
+                @if(inputEmail?.touched){
+                <div>
+                    @if(inputEmail?.errors?.['required'] || inputEmail?.errors?.['email']){
+
+                    <small class="text-danger">
+                        Must contain {{'@'}} and a domain
+                    </small>
+                    }
+                </div>
+                }
+
             </div>
 
             <div class="form-floating field-spacing">
-                <input type="pass" name="password" class="form-control" id="floatingPassword" placeholder="Password"
-                    ngModel #inputPassword="ngModel" required minlength="6">
+                <input type="pass" name="password" class="form-control" id="password" placeholder="Password" ngModel
+                    #inputPassword="ngModel" required minlength="6" [class]="(
+            (inputPassword?.touched && inputPassword?.errors?.['required']) || 
+             (inputPassword?.touched && inputPassword?.errors?.['minlength']))
+             ? 'is-invalid': ''">
                 <label for="floatingInput">Password</label>
+
+                @if(inputPassword?.touched){
+                <div>
+                    @if(inputPassword?.errors?.['required'] || inputPassword?.errors?.['minlength']){
+
+                    <small class="text-danger">
+                        Must be at least 6 characters
+                    </small>
+                    }
+                </div>
+                }
+
             </div>
 
             <div class="form-floating field-spacing">
-                <input type="rePass" name="rePassword" class="form-control" id="floatingPassword"
-                    placeholder="Repeat Password" ngModel #inputrePassword="ngModel" required minlength="6">
+                <input type="rePass" name="rePassword" class="form-control" id="rePassword"
+                    placeholder="Repeat Password" ngModel #inputRePassword="ngModel" required appMatchPasswords
+                    [password]="inputPassword.value" [class]="(
+            (inputRePassword?.touched && inputRePassword?.errors?.['required']) || 
+             (inputRePassword?.touched && inputRePassword?.errors?.['matchPasswordsValidator']))
+             ? 'is-invalid': ''">
                 <label for="floatingInput">Repeat Password</label>
+
+                @if(inputRePassword?.touched){
+                <div>
+                    @if(inputRePassword?.errors?.['required'] || inputRePassword?.errors?.['matchPasswordsValidator']){
+
+                    <small class="text-danger">
+                        Password mismatch
+                    </small>
+                    }
+                </div>
+                }
+
             </div>
 
             <button class="btn btn-primary w-100 py-2" type="submit" style="margin-top: 10px;">Register</button>

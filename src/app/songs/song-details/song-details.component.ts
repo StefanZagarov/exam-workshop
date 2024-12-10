@@ -6,17 +6,19 @@ import { Song } from '../../interfaces/song';
 import { FormsModule, NgForm } from '@angular/forms';
 import { LikesPipe } from '../../shared/pipes/likes.pipe';
 import { LoaderComponent } from '../../shared/loader/loader.component';
+import { ImageUrlDirective } from '../../directives/image-url.directive';
+import { ToastService } from '../../toast/toast.service';
 
 @Component({
   selector: 'app-song-details',
   standalone: true,
-  imports: [FormsModule, LikesPipe, LoaderComponent],
+  imports: [FormsModule, LikesPipe, LoaderComponent, ImageUrlDirective],
   templateUrl: './song-details.component.html',
   styleUrl: './song-details.component.css'
 })
 export class SongDetailsComponent implements OnInit
 {
-  constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService, private userService: UserService, private router: Router) { };
+  constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService, private userService: UserService, private router: Router, private toastService: ToastService) { };
 
   song = {} as Song;
   isOwner = false;
@@ -49,12 +51,17 @@ export class SongDetailsComponent implements OnInit
 
   toggleEditMode()
   {
+    this.updateSongPageInfo();
     this.editMode = !this.editMode;
   }
 
   updateSong(form: NgForm)
   {
-    if (form.value.invalid) return;
+    if (form.invalid)
+    {
+      this.toastService.show(`Please fill all fields correctly!`, `error`);
+      return;
+    };
 
     const { albumImage, name, genres, band, length } = form.value;
 

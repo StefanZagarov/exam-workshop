@@ -148,7 +148,22 @@
                         <div class="form-floating field-spacing info">
                             <input type="name" name="name" class="form-control" id="name" placeholder="Name"
                                 style="font-size: 62px; padding-top:42px; padding-bottom: 45px;" ngModel
-                                #inputName="ngModel" [(ngModel)]="song.name" required>
+                                #inputName="ngModel" [(ngModel)]="song.name" required [class]="(
+            (inputName?.touched && inputName?.errors?.['required']))
+             ? 'is-invalid': ''">
+
+                            @if (inputName?.touched && inputName?.errors?.['required'])
+                            {
+                            <small class="text-danger" style="font-size: 24px;">
+                                Name is required!
+                            </small>
+                            }
+                            @else if(inputName?.touched){
+                            <small class="text-danger" style="font-size: 24px;">
+                                Changing the name will reset the likes!
+                            </small>
+                            }
+
                         </div>
 
                         <div class="info">
@@ -156,8 +171,24 @@
                             <div class="form-floating field-spacing info" style="color: black;">
                                 <input type="albumImage" name="albumImage" class="form-control" id="albumImage"
                                     placeholder="Album Image" style="font-size: 20px; padding-bottom: 25px;" ngModel
-                                    #inputAlbumImage="ngModel" [(ngModel)]="song.albumImage">
+                                    #inputAlbumImage="ngModel" [(ngModel)]="song.albumImage" required appImageUrl
+                                    [class]="(
+            (inputAlbumImage?.touched && inputAlbumImage?.errors?.['required']) || 
+             (inputAlbumImage?.touched && inputAlbumImage?.errors?.['imageValidator']))
+             ? 'is-invalid': ''">
                             </div>
+
+                            @if(inputAlbumImage?.touched){
+                            <div>
+                                @if(inputAlbumImage?.errors?.['required'] ||
+                                inputAlbumImage?.errors?.['imageValidator']){
+                                <small class="text-danger">
+                                    Must start with http/s://
+                                </small>
+                                }
+                            </div>
+                            }
+
                         </div>
 
                         <div class="info">
@@ -165,8 +196,22 @@
                             <div class="form-floating field-spacing info" style="color: black;">
                                 <input type="band" name="band" class="form-control" id="band" placeholder="Band"
                                     style="font-size: 20px; padding-bottom: 25px;" ngModel #inputBand="ngModel" required
-                                    minlength="3" [(ngModel)]="song.band">
+                                    [(ngModel)]="song.band" [class]="(
+            (inputBand?.touched && inputBand?.errors?.['required']))
+             ? 'is-invalid': ''">
                             </div>
+
+                            @if(inputBand?.touched){
+                            <div>
+                                @if(inputBand?.errors?.['required'])
+                                {
+                                <small class="text-danger">
+                                    Band name is required
+                                </small>
+                                }
+                            </div>
+                            }
+
                         </div>
 
                         <div class="info">
@@ -174,17 +219,45 @@
                             <div class="form-floating field-spacing info" style="color: black;">
                                 <input type="genres" name="genres" class="form-control" id="genres" placeholder="Genres"
                                     style="font-size: 20px; padding-bottom: 25px;" ngModel #inputGenres="ngModel"
-                                    required minlength="3" [(ngModel)]="song.genres">
+                                    required minlength="3" [(ngModel)]="song.genres" [class]="(
+            (inputGenres?.touched && inputGenres?.errors?.['required']) || 
+             (inputGenres?.touched && inputGenres?.errors?.['minlength']))
+             ? 'is-invalid': ''">
                             </div>
+
+                            @if(inputGenres?.touched){
+                            <div>
+                                @if(inputGenres?.errors?.['required'] || inputGenres?.errors?.['minlength']){
+                                <small class="text-danger">
+                                    Must be at least 3 characters
+                                </small>
+                                }
+                            </div>
+                            }
+
                         </div>
 
                         <div class="info">
-                            <h3>Length</h3>
+                            <h3>Song Length</h3>
                             <div class="form-floating field-spacing info" style="color: black;">
                                 <input type="length" name="length" class="form-control" id="length" placeholder="Length"
                                     style="font-size: 20px; padding-bottom: 25px;" ngModel #inputLength="ngModel"
-                                    required minlength="3" [(ngModel)]="song.length">
+                                    required minlength="4" [(ngModel)]="song.length" [class]="(
+            (inputLength?.touched && inputLength?.errors?.['required']) || 
+             (inputLength?.touched && inputLength?.errors?.['minlength']))
+             ? 'is-invalid': ''">
                             </div>
+
+                            @if(inputLength?.touched){
+                            <div>
+                                @if(inputLength?.errors?.['required'] || inputLength?.errors?.['minlength']){
+                                <small class="text-danger">
+                                    Must be at least 4 characters
+                                </small>
+                                }
+                            </div>
+                            }
+
                         </div>
                         <button class="btn btn-primary" style="margin-right: 1%;">Save changes</button>
                         <button class="btn btn-primary" type="button" (click)="toggleEditMode()">Cancel</button>
