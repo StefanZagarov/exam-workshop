@@ -8,6 +8,7 @@ import { SongDetailsComponent } from './songs/song-details/song-details.componen
 import { BandDetailsComponent } from './bands/band-details/band-details.component';
 import { bandsRankingResolver } from './rankings/band-rankings/bands-ranking.resolver';
 import { songsRankingResolver } from './rankings/song-rankings/songs-ranking.resolver';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 export const routes: Routes = [
     // Home
@@ -46,5 +47,9 @@ export const routes: Routes = [
             },
             { path: `:songId`, component: SongDetailsComponent }
         ]
-    }
+    },
+
+    // 404
+    { path: '404', component: PageNotFoundComponent },
+    { path: '**', redirectTo: '/404' },
 ];

@@ -15,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent
 {
-  constructor(private userService: UserService, private router: Router, private toastService: ToastService, private http: HttpClient) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   form = new FormGroup({
     username: new FormControl(``, [Validators.required, Validators.minLength(3)]),
