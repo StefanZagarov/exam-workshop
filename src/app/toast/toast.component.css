@@ -14,8 +14,9 @@
 
 .toast {
     position: fixed;
-    bottom: 10px;
-    left: 10px;
+    top: 15%;
+    right: 5%;
+    align-items: center;
     padding: 10px;
     background-color: #f8d7da;
     color: #721c24;
