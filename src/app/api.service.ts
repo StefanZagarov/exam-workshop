@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Band } from './interfaces/band';
 import { Song } from './interfaces/song';
-import { Comment } from './interfaces/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +24,16 @@ export class ApiService
   getAllSongsByLikes()
   {
     return this.http.get<Song[]>(`/api/song/ranking`);
+  }
+
+  getAllSongsCreatedByUser(userId: string)
+  {
+    return this.http.get<Song[]>(`/api/song/${userId}/created-songs`);
+  }
+
+  getAllSongsLikedByUser(userId: string)
+  {
+    return this.http.get<Song[]>(`/api/song/${userId}/liked-songs`);
   }
 
   getSongDetails(id: string)
@@ -79,6 +88,16 @@ export class ApiService
     return this.http.get<Band[]>(`/api/band/ranking`);
   }
 
+  getAllBandsCreatedByUser(userId: string)
+  {
+    return this.http.get<Band[]>(`/api/band/${userId}/created-bands`);
+  }
+
+  getAllBandsLikedByUser(userId: string)
+  {
+    return this.http.get<Band[]>(`/api/band/${userId}/liked-bands`);
+  }
+
   getBandDetails(id: string)
   {
     return this.http.get<Band>(`/api/band/${id}`);
@@ -113,5 +132,4 @@ export class ApiService
   {
     return this.http.delete(`/api/band/${bandId}`);
   }
-  // TODO: Search bar functionality
 }

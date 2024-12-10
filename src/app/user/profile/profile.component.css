@@ -165,3 +165,45 @@ body {
     border: 2px solid #fe4f6c;
     color: #fe4f6c;
 }
+
+.scrollable-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    /* Space between items */
+    padding: 10px;
+    scroll-snap-type: x mandatory;
+}
+
+.item {
+    flex-shrink: 0;
+    width: 200px;
+    /* Set your preferred width */
+    scroll-snap-align: start;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #121213;
+}
+
+.item-image {
+    width: 100%;
+    height: 150px;
+    /* Adjust based on your needs */
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.item-text {
+    margin-top: 10px;
+}
+
+.item-title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.item-description {
+    font-size: 14px;
+    color: #555;
+}

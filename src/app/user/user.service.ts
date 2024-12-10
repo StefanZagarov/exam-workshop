@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
+import { ApiService } from '../api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class UserService
   private user$$ = new BehaviorSubject<User | null>(null);
 
   // ?? TODO: Learn how this is useful aswell
-  private user$ = this.user$$.asObservable();
+  public user$ = this.user$$.asObservable();
 
   user: User | null = null;
   // TODO: Find the use for this - ngOnDestroy, unsubscribe to sometihng, learn how this is helpful
@@ -75,5 +76,20 @@ export class UserService
     {
       this.user$$.next(user);
     }));
+  }
+
+  getSongsCreatedByUser()
+  {
+
+  }
+
+  getBandsLikedByUser()
+  {
+
+  }
+
+  getSongsLikedByUser()
+  {
+
   }
 }

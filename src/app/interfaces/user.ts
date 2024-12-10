@@ -7,8 +7,6 @@ export interface User
     email: string;
     password: string;
     _id: string;
-    createdBands: Band[];
-    createdSongs: Song[];
 };
 
 export interface UserDetails
