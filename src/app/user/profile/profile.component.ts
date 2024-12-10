@@ -4,11 +4,12 @@ import { User, UserDetails } from '../../interfaces/user';
 import { ApiService } from '../../api.service';
 import { Band } from '../../interfaces/band';
 import { Song } from '../../interfaces/song';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
