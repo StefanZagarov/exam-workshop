@@ -1,36 +1,18 @@
-<div class="profile-container">
-    <!-- Profile Information Section -->
-    <div class="profile-info">
-        <h2 class="profile-title">User Profile</h2>
-        <div class="profile-details">
-            <label for="username">Username:</label>
-            <span id="username">JohnDoe</span>
-        </div>
-        <div class="profile-details">
-            <label for="email">Email:</label>
-            <span id="email">johndoeexample.com</span>
-        </div>
-    </div>
-
-    <!-- Scrollable List Sections -->
-    <h2>Liked Bands</h2>
-    <div class="scrollable-lists">
-        <div class="scrollable-container">
-            @for (band of likedBands; track $index)
-            {
-            <div class="item">
-                <img src="{{band.bandImage}}" onerror="this.onerror=null; this.src='defaultImg.jpg'" class="item-image">
-                <div class="item-text">
-                    <a routerLink="{{band._id}}" class="item-title">{{band.name}}</a>
-                    <p class="item-description">{{band.origin}}</p>
-                    <p class="item-description">{{band.genres}}</p>
-                </div>
+<div class="bg-color" style="height: 100vh; color:#c0c0c0; overflow: auto">
+    <div class="profile-container">
+        <!-- Profile Information Section -->
+        <div class="profile-info" style="margin-top: 10%;">
+            <h2 class="profile-title" style="margin-left:49%;">{{user?.username}}</h2>
+            <div class="profile-details">
+                <label for="username">Contact:</label>
+                <span id="username" style="margin-left: 2%;">{{user?.email}}</span>
             </div>
-            }
         </div>
 
-        <!-- Scrollable List Sections -->
-        <h2>Liked Songs</h2>
+
+        <h2>Liked Bands</h2>
+        @if(likedBands?.length)
+        {
         <div class="scrollable-lists">
             <div class="scrollable-container">
                 @for (band of likedBands; track $index)
@@ -39,51 +21,94 @@
                     <img src="{{band.bandImage}}" onerror="this.onerror=null; this.src='defaultImg.jpg'"
                         class="item-image">
                     <div class="item-text">
-                        <p class="item-title">{{band.name}}</p>
+                        <a routerLink="band/{{band._id}}" class="item-title">{{band.name}}</a>
                         <p class="item-description">{{band.origin}}</p>
                         <p class="item-description">{{band.genres}}</p>
                     </div>
                 </div>
                 }
             </div>
+        </div>
+        }
+        @else
+        {
+        <h5 style="margin-bottom: 20px;">No bands liked yet</h5>
+        }
 
-            <!-- Scrollable List Sections -->
-            <h2>Created Bands</h2>
-            <div class="scrollable-lists">
-                <div class="scrollable-container">
-                    @for (band of likedBands; track $index)
-                    {
-                    <div class="item">
-                        <img src="{{band.bandImage}}" onerror="this.onerror=null; this.src='defaultImg.jpg'"
-                            class="item-image">
-                        <div class="item-text">
-                            <p class="item-title">{{band.name}}</p>
-                            <p class="item-description">{{band.origin}}</p>
-                            <p class="item-description">{{band.genres}}</p>
-                        </div>
-                    </div>
-                    }
-                </div>
+        <h2>Liked Songs</h2>
+        @if(likedSongs?.length)
+        {
+        <div class="scrollable-lists">
+            <div class="scrollable-container">
 
-                <!-- Scrollable List Sections -->
-                <h2>Created Songs</h2>
-                <div class="scrollable-lists">
-                    <div class="scrollable-container">
-                        @for (band of likedBands; track $index)
-                        {
-                        <div class="item">
-                            <img src="{{band.bandImage}}" onerror="this.onerror=null; this.src='defaultImg.jpg'"
-                                class="item-image">
-                            <div class="item-text">
-                                <p class="item-title">{{band.name}}</p>
-                                <p class="item-description">{{band.origin}}</p>
-                                <p class="item-description">{{band.genres}}</p>
-                            </div>
-                        </div>
-                        }
+                @for (song of likedSongs; track $index)
+                {
+                <div class="item">
+                    <img src="{{song.albumImage}}" onerror="this.onerror=null; this.src='defaultImg.jpg'"
+                        class="item-image">
+                    <div class="item-text">
+                        <p routerLink="song/{{song._id}}" class="item-title">{{song.name}}</p>
+                        <p class="item-description">{{song.genres}}</p>
+                        <p class="item-description">{{song.length}}</p>
                     </div>
                 </div>
+                }
             </div>
         </div>
+        }
+        @else
+        {
+        <h5 style="margin-bottom: 20px;">No songs liked yet</h5>
+        }
+
+        <h2>Added Bands</h2>
+        @if(createdBands?.length)
+        {
+        <div class="scrollable-lists">
+            <div class="scrollable-container">
+                @for (band of createdBands; track $index)
+                {
+                <div class="item">
+                    <img src="{{band.bandImage}}" onerror="this.onerror=null; this.src='defaultImg.jpg'"
+                        class="item-image">
+                    <div class="item-text">
+                        <p routerLink="band/{{band._id}}" class="item-title">{{band.name}}</p>
+                        <p class="item-description">{{band.origin}}</p>
+                        <p class="item-description">{{band.genres}}</p>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+        }
+        @else
+        {
+        <h5 style="margin-bottom: 20px;">No bands added yet</h5>
+        }
+
+        <h2>Added Songs</h2>
+        @if(createdSongs?.length)
+        {
+        <div class="scrollable-lists">
+            <div class="scrollable-container">
+                @for (song of createdSongs; track $index)
+                {
+                <div class="item">
+                    <img src="{{song.albumImage}}" onerror="this.onerror=null; this.src='defaultImg.jpg'"
+                        class="item-image">
+                    <div class="item-text">
+                        <p routerLink="song/{{song._id}}" class="item-title">{{song.name}}</p>
+                        <p class="item-description">{{song.genres}}</p>
+                        <p class="item-description">{{song.length}}</p>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+        }
+        @else
+        {
+        <h5 style="margin-bottom: 20px;">No songs added yet</h5>
+        }
     </div>
 </div>

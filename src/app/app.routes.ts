@@ -21,7 +21,17 @@ export const routes: Routes = [
         loadComponent: () => import(`./user/register/register.component`).then(c => c.RegisterComponent),
     },
     { path: `login`, component: LoginComponent },
-    { path: `profile`, component: ProfileComponent },
+    {
+        path: `profile`,
+        children: [
+            {
+                path: ``,
+                loadComponent: () => import(`./user/profile/profile.component`).then(c => c.ProfileComponent)
+            },
+            { path: `band/:bandId`, component: BandDetailsComponent },
+            { path: `song/:songId`, component: SongDetailsComponent }
+        ]
+    },
 
     // App related paths
     { path: `create-band`, component: CreateBandComponent },
