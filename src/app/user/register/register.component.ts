@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../user.service';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatchPasswordsDirective } from '../../directives/match-passwords.directive';
 import { ToastService } from '../../toast/toast.service';
 
@@ -15,7 +15,8 @@ import { ToastService } from '../../toast/toast.service';
 export class RegisterComponent
 {
   // Template-driven form
-  constructor(private userService: UserService, private router: Router, private toastService: ToastService) { }
+  constructor(private userService: UserService, private router: Router, private toastService: ToastService, private activRoute: ActivatedRoute) { }
+
 
   register(form: NgForm)
   {

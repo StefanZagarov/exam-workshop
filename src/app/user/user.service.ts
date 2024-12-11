@@ -1,23 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
-import { BehaviorSubject, tap } from 'rxjs';
-import { ApiService } from '../api.service';
+import { BehaviorSubject, firstValueFrom, lastValueFrom, take, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService
 {
-  // ?? TODO: Learn how this is useful
   private user$$ = new BehaviorSubject<User | null>(null);
 
-  // ?? TODO: Learn how this is useful aswell
   public user$ = this.user$$.asObservable();
 
   user: User | null = null;
-  // TODO: Find the use for this - ngOnDestroy, unsubscribe to sometihng, learn how this is helpful
-  // userSubscription: Subscription | null = null;
+
 
   get isLoggedIn(): boolean
   {
@@ -26,23 +22,23 @@ export class UserService
 
   constructor(private http: HttpClient)
   {
-    // If we get a user, set it to the Observable
-    // this.userSubscription = this.user$.subscribe(user =>
-    // {
-    //
-    //   // Research if userSubscription is needed as it seems to have everything set to null even after login
-    //   this.user = user;
-    // });
-
     this.user$.subscribe(user =>
     {
       this.user = user;
     });
   }
 
+  async initializeUserData(): Promise<void>
+  {
+    return firstValueFrom(this.http.get<User | null>('/api/user/profile'))
+      .then(user =>
+      {
+        this.user$$.next(user);
+      });
+  }
+
   register(username: string, email: string, password: string, rePassword: string)
   {
-    // TODO: Find out what pipe(tap()) and .next functions do
     return this.http
       .post<User>(`/api/register`, {
         username,

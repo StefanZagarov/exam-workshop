@@ -1,9 +1,10 @@
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./core/header/header.component";
 import { AuthenticateComponent } from "./authenticate/authenticate.component";
 import { ToastComponent } from './toast/toast.component';
+
 
 @Component({
   selector: 'app-root',
@@ -15,4 +16,8 @@ import { ToastComponent } from './toast/toast.component';
 export class AppComponent
 {
   title = 'exam-workshop';
+
+  constructor() { }
+
+
 }

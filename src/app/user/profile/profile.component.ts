@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent implements OnInit, AfterViewInit
+export class ProfileComponent implements OnInit
 {
   constructor(private userService: UserService, private apiService: ApiService) { }
 
@@ -27,17 +27,13 @@ export class ProfileComponent implements OnInit, AfterViewInit
 
   ngOnInit(): void
   {
-    // In order to get the user after it is set in the service, we subscribe    
-    this.userService.user$.subscribe(user => this.user = user);
+    this.userService.getProfile().subscribe({
+      next: (user) => this.user = user,
+      complete: () => this.populateProfileData()
+    });
   }
 
-  // Get the data after the user variable gets data
-  ngAfterViewInit(): void
-  {
-    this.populateStatistics();
-  }
-
-  populateStatistics()
+  populateProfileData()
   {
     this.getAllBandsCreatedByUser();
     this.getAllBandsLikedByUser();

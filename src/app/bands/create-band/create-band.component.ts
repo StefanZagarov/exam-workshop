@@ -15,7 +15,7 @@ import { ToastService } from '../../toast/toast.service';
 export class CreateBandComponent
 {
   constructor(private apiService: ApiService, private router: Router, private toastService: ToastService) { };
-  // bandImage = ``;
+
   createBand(form: NgForm)
   {
     // this.bandImage = form.value.bandImage;

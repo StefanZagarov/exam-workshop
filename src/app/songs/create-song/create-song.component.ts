@@ -35,7 +35,6 @@ export class CreateSongComponent
 
     const { albumImage, name, genres, band, length } = form.value;
 
-    // TODO: Get the user id from here (apiService.user._id)
     this.apiService.createSong(albumImage, name, genres, band, length).subscribe(() =>
     {
       this.router.navigate([`/songs-ranking`]);
