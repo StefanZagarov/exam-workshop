@@ -4,7 +4,6 @@ import { Song } from '../../interfaces/song';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LikesPipe } from '../../shared/pipes/likes.pipe';
 import { UserService } from '../../user/user.service';
-import { LoaderComponent } from '../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-song-rankings',
@@ -21,19 +20,12 @@ export class SongsRankingComponent implements OnInit
 
   userId: string | undefined = ``;
 
-  hasLoaded = false;
-
-
-
   ngOnInit(): void
   {
     // Router Resolver
     this.songs = this.activRoute.snapshot.data[`songs`];
 
     this.userId = this.userService.user?._id;
-
-    this.hasLoaded = true;
-
   }
 
   likeSong(songId: string)

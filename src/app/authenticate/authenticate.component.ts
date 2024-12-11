@@ -11,7 +11,6 @@ import { LoaderComponent } from "../shared/loader/loader.component";
 })
 export class AuthenticateComponent implements OnInit
 {
-  // Check for logged in user on website refresh
   constructor(private userService: UserService) { }
 
   isAuthenticated = false;

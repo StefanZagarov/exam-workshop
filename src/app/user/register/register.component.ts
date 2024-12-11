@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit
   // Template-driven form
   constructor(private userService: UserService, private router: Router, private toastService: ToastService, private activRoute: ActivatedRoute) { }
 
-  // Not ideal, but this is what I came up with for getting the user data before page has loaded
+  // Not ideal, but this is what I came up with for getting the user data before page has loaded, a roundabout way for route guarding
   ngOnInit(): void
   {
     const user = this.userService.getProfile().subscribe(user =>

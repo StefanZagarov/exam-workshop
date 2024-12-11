@@ -1,7 +1,7 @@
 // Simpler to be an export function than making it an injectable componen
 
 import { inject } from "@angular/core";
-import { ActivatedRoute, CanActivateFn, Router } from "@angular/router";
+import { CanActivateFn, Router } from "@angular/router";
 import { UserService } from "../user/user.service";
 import { ToastService } from "../toast/toast.service";
 
@@ -27,7 +27,6 @@ export const userAuthGuard: CanActivateFn = () =>
 {
     const userService = inject(UserService);
     const router = inject(Router);
-    const activRoute = inject(ActivatedRoute);
 
     if (userService.isLoggedIn)
     {

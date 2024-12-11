@@ -18,6 +18,6 @@ export class ToastService
     setTimeout(() =>
     {
       this.toasts.shift();
-    }, 5000); // Auto-dismiss after 5 seconds
+    }, 5000);
   }
 }

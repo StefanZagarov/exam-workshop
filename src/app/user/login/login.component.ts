@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit
 {
   constructor(private userService: UserService, private router: Router, private toastService: ToastService) { }
 
-  // Not ideal, but this is what I came up with for getting the user data before page has loaded
+  // Not ideal, but this is what I came up with for getting the user data before page has loaded, a roundabout way for route guarding
   ngOnInit(): void
   {
     const user = this.userService.getProfile().subscribe(user =>

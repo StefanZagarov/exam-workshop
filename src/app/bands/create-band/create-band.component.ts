@@ -18,8 +18,6 @@ export class CreateBandComponent
 
   createBand(form: NgForm)
   {
-    // this.bandImage = form.value.bandImage;
-
     if (form.invalid)
     {
       this.toastService.show('Please fill all fields correctly!', `error`);
@@ -27,7 +25,6 @@ export class CreateBandComponent
     }
     const { bandImage, name, origin, genres, members, description } = form.value;
 
-    // TODO: Take the user id from here (apiService.user._id)
     this.apiService.createBand(bandImage, name, origin, genres, members, description).subscribe(() =>
     {
       this.router.navigate([`/bands-ranking`]);
