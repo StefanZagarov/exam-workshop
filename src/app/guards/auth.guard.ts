@@ -29,10 +29,6 @@ export const userAuthGuard: CanActivateFn = () =>
     const router = inject(Router);
     const activRoute = inject(ActivatedRoute);
 
-    const user = activRoute.snapshot.data[`user`];
-
-    console.log(user);
-
     if (userService.isLoggedIn)
     {
         router.navigate([`/404`]);

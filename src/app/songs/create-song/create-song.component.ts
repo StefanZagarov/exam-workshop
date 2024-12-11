@@ -10,7 +10,7 @@ import { LoaderComponent } from '../../shared/loader/loader.component';
 @Component({
   selector: 'app-create-song',
   standalone: true,
-  imports: [FormsModule, ImageUrlDirective, LoaderComponent],
+  imports: [FormsModule, ImageUrlDirective],
   templateUrl: './create-song.component.html',
   styleUrl: './create-song.component.css'
 })

@@ -5,6 +5,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { errorInterceptor } from './app.interceptor';
 import { UserService } from './user/user.service';
 
+// Load the user data before the app has loaded
 function initializeApp(userService: UserService): () => Promise<void>
 {
   return () => userService.initializeUserData();

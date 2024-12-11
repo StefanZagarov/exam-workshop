@@ -1,5 +1,5 @@
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./core/header/header.component";
 import { AuthenticateComponent } from "./authenticate/authenticate.component";
@@ -18,6 +18,4 @@ export class AppComponent
   title = 'exam-workshop';
 
   constructor() { }
-
-
 }

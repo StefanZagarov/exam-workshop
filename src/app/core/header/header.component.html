@@ -4,40 +4,37 @@
             <a class="navbar-brand" routerLink="/">Distortion Pit</a>
 
             <ul class="navbar-nav me-auto">
+
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+                    <a class="nav-link" routerLink="/songs-ranking" routerLinkActive="active">Songs Ranking</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/songs-ranking">Songs Ranking</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/bands-ranking">Bands Ranking</a>
+                    <a class="nav-link" routerLink="/bands-ranking" routerLinkActive="active">Bands Ranking</a>
                 </li>
 
                 @if(!isLoggedIn)
                 {
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/login">Login</a>
+                    <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/register">Register</a>
+                    <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
                 </li>
                 }
                 @else
                 {
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/create-song">Add a song</a>
+                    <a class="nav-link" routerLink="/create-song" routerLinkActive="active">Add a song</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/create-band">Add a band</a>
+                    <a class="nav-link" routerLink="/create-band" routerLinkActive="active">Add a band</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link float-start " routerLink="/profile">{{username}}</a>
+                    <a class="nav-link float-start " routerLink="/profile" routerLinkActive="active">{{username}}</a>
                 </li>
 
                 <li class="nav-item">
