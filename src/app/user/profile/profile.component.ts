@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { User, UserDetails } from '../../interfaces/user';
+import { User } from '../../interfaces/user';
 import { ApiService } from '../../api.service';
 import { Band } from '../../interfaces/band';
 import { Song } from '../../interfaces/song';

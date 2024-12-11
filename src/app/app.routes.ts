@@ -10,7 +10,6 @@ import { songsRankingResolver } from './rankings/song-rankings/songs-ranking.res
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { authGuard, userAuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './user/register/register.component';
-import { registerResolver } from './user/register/register.resolver';
 
 export const routes: Routes = [
     // Home
@@ -18,12 +17,7 @@ export const routes: Routes = [
     { path: `home`, component: HomeComponent },
 
     // User related paths
-    {
-        path: `register`,
-        component: RegisterComponent,
-        resolve: { user: registerResolver },
-
-    },
+    { path: `register`, component: RegisterComponent, },
     { path: `login`, component: LoginComponent },
     {
         path: `profile`,
