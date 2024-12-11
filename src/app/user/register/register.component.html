@@ -49,8 +49,9 @@
             </div>
 
             <div class="form-floating field-spacing">
-                <input type="pass" name="password" class="form-control" id="password" placeholder="Password" ngModel
-                    #inputPassword="ngModel" required minlength="6" [class]="(
+                <input type="pass" name="password" class="form-control" style="-webkit-text-security: disc;"
+                    id="password" placeholder="Password" ngModel #inputPassword="ngModel" required minlength="6"
+                    [class]="(
             (inputPassword?.touched && inputPassword?.errors?.['required']) || 
              (inputPassword?.touched && inputPassword?.errors?.['minlength']))
              ? 'is-invalid': ''">
@@ -70,9 +71,9 @@
             </div>
 
             <div class="form-floating field-spacing">
-                <input type="rePass" name="rePassword" class="form-control" id="rePassword"
-                    placeholder="Repeat Password" ngModel #inputRePassword="ngModel" required appMatchPasswords
-                    [password]="inputPassword.value" [class]="(
+                <input type="rePass" name="rePassword" class="form-control" style="-webkit-text-security: disc;"
+                    id="rePassword" placeholder="Repeat Password" ngModel #inputRePassword="ngModel" required
+                    appMatchPasswords [password]="inputPassword.value" [class]="(
             (inputRePassword?.touched && inputRePassword?.errors?.['required']) || 
              (inputRePassword?.touched && inputRePassword?.errors?.['matchPasswordsValidator']))
              ? 'is-invalid': ''">

@@ -22,8 +22,8 @@
 
 
             <div class="form-floating field-spacing">
-                <input type="pass" name="password" class="form-control" id="floatingPassword" placeholder="Password"
-                    formControlName="password"
+                <input type="pass" name="password" class="form-control" style="-webkit-text-security: disc;"
+                    id="floatingPassword" placeholder="Password" formControlName="password"
                     [class]="isFieldTextMissing('password') || isNotMinLength('password') ? 'is-invalid' : 'isvalid'">
                 <label for="floatingPassword">Password</label>
             </div>
