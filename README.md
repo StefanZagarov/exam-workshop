@@ -15,12 +15,15 @@ This web application allows users to add bands and songs, and compare them with 
 
 - Requirements: This [back-end API](https://github.com/StefanZagarov/Exam-Rest-API) in order to store data
 
-1. In the VSCode terminal write `ng serve` to start the front-end server
-2. In the VSCode terminal of the back-end API write `npm start` to start the back-end server
+1. In the VSCode terminal write `npm i` to install dependencies
+2. Then write `ng serve` to start the front-end server
+3. In the VSCode terminal of the back-end API write `npm i` to install dependencies
+4. Then write `npm start` to start the back-end server
 
 ## How to use
 
-  - Guests can only browse the ranking lists and view details
+  - Guests can only browse the ranking lists and view details of the songs and bands
+
   - Users can add bands and songs
   - Users can like others' bands and songs
   - Users can leave a comment under a song or band's details page, the comments can be deleted by the user who created it
