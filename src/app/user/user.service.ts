@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
-import { BehaviorSubject, Subscription, tap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { ApiService } from '../api.service';
 
 @Injectable({
@@ -76,20 +76,5 @@ export class UserService
     {
       this.user$$.next(user);
     }));
-  }
-
-  getSongsCreatedByUser()
-  {
-
-  }
-
-  getBandsLikedByUser()
-  {
-
-  }
-
-  getSongsLikedByUser()
-  {
-
   }
 }

@@ -14,7 +14,7 @@ import { ToastService } from '../../toast/toast.service';
 })
 export class CreateBandComponent
 {
-  constructor(private apiService: ApiService, private router: Router, private toastServie: ToastService) { };
+  constructor(private apiService: ApiService, private router: Router, private toastService: ToastService) { };
   // bandImage = ``;
   createBand(form: NgForm)
   {
@@ -22,12 +22,16 @@ export class CreateBandComponent
 
     if (form.invalid)
     {
-      this.toastServie.show('Please fill all fields correctly!', `error`);
+      this.toastService.show('Please fill all fields correctly!', `error`);
       return;
     }
     const { bandImage, name, origin, genres, members, description } = form.value;
 
     // TODO: Take the user id from here (apiService.user._id)
-    this.apiService.createBand(bandImage, name, origin, genres, members, description).subscribe(() => this.router.navigate([`/bands-ranking`]));
+    this.apiService.createBand(bandImage, name, origin, genres, members, description).subscribe(() =>
+    {
+      this.router.navigate([`/bands-ranking`]);
+      this.toastService.show(`Band added`, `success`);
+    });
   }
 }

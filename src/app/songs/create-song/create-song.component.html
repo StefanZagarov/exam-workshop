@@ -73,12 +73,12 @@
              ? 'is-invalid': ''">
                 <label for="floatingInput">Band</label>
 
-                @if(inputName?.touched){
+                @if(inputBand?.touched){
                 <div>
-                    @if(inputName?.errors?.['required'])
+                    @if(inputBand?.errors?.['required'])
                     {
                     <small class="text-danger">
-                        Name is required
+                        Band name is required
                     </small>
                     }
                 </div>

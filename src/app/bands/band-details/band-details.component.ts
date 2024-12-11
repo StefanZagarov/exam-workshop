@@ -68,6 +68,7 @@ export class BandDetailsComponent implements OnInit
     {
       this.updateBandPageInfo();
       this.toggleEditMode();
+      this.toastService.show(`Details updated!`, `success`);
     });
   }
 
@@ -133,6 +134,7 @@ export class BandDetailsComponent implements OnInit
     this.apiService.deleteBand(this.bandId).subscribe(() =>
     {
       this.router.navigate([`/bands-ranking`]);
+      this.toastService.show(`Band deleted!`, `success`);
     });
   }
 }

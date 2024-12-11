@@ -8,11 +8,12 @@ import { LikesPipe } from '../../shared/pipes/likes.pipe';
 import { LoaderComponent } from '../../shared/loader/loader.component';
 import { ImageUrlDirective } from '../../directives/image-url.directive';
 import { ToastService } from '../../toast/toast.service';
+import { TimeConverterPipe } from '../../shared/pipes/time-converter.pipe';
 
 @Component({
   selector: 'app-song-details',
   standalone: true,
-  imports: [FormsModule, LikesPipe, LoaderComponent, ImageUrlDirective],
+  imports: [FormsModule, LikesPipe, LoaderComponent, ImageUrlDirective, TimeConverterPipe],
   templateUrl: './song-details.component.html',
   styleUrl: './song-details.component.css'
 })
@@ -69,6 +70,7 @@ export class SongDetailsComponent implements OnInit
     {
       this.updateSongPageInfo();
       this.toggleEditMode();
+      this.toastService.show(`Details updated!`, `success`);
     });
   }
 
@@ -134,6 +136,7 @@ export class SongDetailsComponent implements OnInit
     this.apiService.deleteSong(this.songId).subscribe(() =>
     {
       this.router.navigate([`/songs-ranking`]);
+      this.toastService.show(`Song deleted!`, `success`);
     });
   }
 }

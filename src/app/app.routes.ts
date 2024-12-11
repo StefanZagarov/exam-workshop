@@ -9,6 +9,7 @@ import { BandDetailsComponent } from './bands/band-details/band-details.componen
 import { bandsRankingResolver } from './rankings/band-rankings/bands-ranking.resolver';
 import { songsRankingResolver } from './rankings/song-rankings/songs-ranking.resolver';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     // Home
@@ -34,8 +35,16 @@ export const routes: Routes = [
     },
 
     // App related paths
-    { path: `create-band`, component: CreateBandComponent },
-    { path: `create-song`, component: CreateSongComponent },
+    {
+        path: `create-band`,
+        component: CreateBandComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: `create-song`,
+        component: CreateSongComponent,
+        canActivate: [authGuard]
+    },
     {
         path: `bands-ranking`,
         children: [

@@ -3,8 +3,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UserService } from '../user.service';
 import { Router, RouterLink } from '@angular/router';
 import { ToastService } from '../../toast/toast.service';
-import { catchError, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
